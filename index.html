@@ -27,9 +27,10 @@
         /* navigation menu */
         nav {
             background-image:url("https://i.pinimg.com/236x/2b/35/00/2b350034f4864a41493aff948b15b787.jpg");
+        
            margin: 0 max;
             display: flex;
-            padding: 10px;
+            padding: 5px;
         }
         h1 {
             display: flex;
@@ -72,7 +73,28 @@
         }
         h2, h3 {
             margin: 0px;
-        }
+        }  
+        
+        /* flexbox */
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+          }
+          
+          .flex-item-left {
+            flex: 50%;
+          }
+          
+          .flex-item-right {
+            flex: 50%;
+          }
+          
+          /* Responsive layout - makes a one column layout instead of a two-column layout */
+          @media (max-width: 800px) {
+            .flex-item-right, .flex-item-left {
+              flex: 100%;
+            }
+          }
      </style>
       
 </head>
@@ -80,10 +102,25 @@
 <body>
 
   <!-- All content goes here -->    
-    <div>
+    <div id="all-contents">
     </div>
+    <div class="flex-container">
+        <div>1</div>
+        <div>2</div>
+        
+        
+      </div>
+    
+      </div>
     <nav>
         <h1>Mav's Bizzare Website</h1>
+        <!--menu to portfolio-->
+       <style>
+      
+       </style>
+    </nav>
+    <nav>
+    
         <!--menu to portfolio-->
         <ul>
             <li>
@@ -93,16 +130,14 @@
                 <a href="portfolio.html"> Portfolio</a>
             </li>
         </ul>
-        
-    </nav>
     
+    </nav>
     <main>
         <!-- Sidebar section --> 
-        
-        <div>
+        <div class = sidebar>
             <!-- where an image was supposed to be-->
             <!--<img width="200"src="https://i.pinimg.com/originals/c5/53/fe/c553fe8719a8a8adf8bac424c3f492a8.jpg">-->
-            
+         
         </div>
         <!-- Content section -->
         <div>
