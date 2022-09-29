@@ -37,11 +37,26 @@
     createPlatform(0, game.world.height - 32, 3, 2); // DO NOT DELETE
 
     // example:
-    createPlatform(400, 250);
-    createPlatform(170, 460, 0.5);
+    //createPlatform(400, 250);
+   // createPlatform(170, 460, 0.5);
+   createPlatform(650,560+40,.8);
+createPlatform(220,490);
+createPlatform(0,370,.7); //paltform far left #1
+createPlatform(700,280);
+createPlatform(320,300,.5)
 
     // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////
   }
   platform.init = init;
 })(window);
+  /*
+    createCollectable(type, x, y, gravity, bounce);
+
+    type: The type of the collectable. 
+    x: The x coordinate for the collectable.
+    y: The y coordinate for the collectable.
+    gravity: OPTIONAL The gravitational pull on the collectable.
+    bounce: OPTIONAL A factor effecting how much the collectable will bounce off platforms, etc.
+    */
+    
