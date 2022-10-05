@@ -21,6 +21,7 @@
    *          - the y coordinate for "left" and "right" cannons
    *      delay: OPTIONAL the number of milliseconds to wait before firing the first projectile
    */
+
   function init(game) {
     let createCannon = cannon.create;
     ////////////////////////////////////////////////////////////////////////
@@ -28,9 +29,18 @@
 
     // example:
     createCannon("top", 450);
-
+    createCannon("right", 430, 1000);
+createCannon("left", 200, 1000);
     // ALL YOUR CODE GOES ABOVE HERE ///////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////
   }
   cannon.init = init;
 })(window);
+/*
+createCannon(type, position, delay);
+
+type: The type of cannon to be made. This can be one of the following Strings: "top", "bottom", "left", or "right"
+position: The position coordinate for the cannon along the wall it is placed.
+delay: OPTIONAL The number of milliseconds to wait before firing the first projectile*/
+//createCannon("left", 300, 1000); 
+// a cannon on the left side of the screen, located at y = 300, with a 1 second delay (1000ms)
