@@ -61,8 +61,10 @@
 			//////////////////////////////////////////////////////////////////
 			
 			// TODO 2 - Variable declarations 
-			
-
+			var positionX = 0;
+			function update() {
+				moveBoxTo(positionX);
+			}
 			
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
@@ -70,10 +72,10 @@
 			turn it around! 
 			*/
 			function update() {
-				moveBoxTo(900);
-				moveBoxTo(boardWidth);
+				moveBoxTo(positionX + 10);
+				
 
-			};
+			}
 
 			/* 
 			This Function will be called each time the box is clicked. Each time it is called,
