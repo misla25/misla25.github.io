@@ -6,18 +6,24 @@
 	<script src="jquery.min.js"></script>
 	<style>
 		.box {
-			width: 70px;
-			height: 70px;
-			background-color: teal;
-			font-size: 300%;
+			width: 90px;
+			height: 90px;
+			background-image: url(https://pbs.twimg.com/media/Fg7VGPKWYAAZJEx.jpg);
+			background-repeat: no-repeat;
+			color: rgb(255, 67, 161);
+			font-size: 500%;
 			text-align: center;
 			display: block;
 			position: absolute;
 			top: 390px;
-			left: 0px;  /* <--- Change me! */
+			left: 8px;  /* <--- Change me! */
 		}
 		.board{
 			height: 100vh;
+			background : url(https://blog.kakaocdn.net/dn/dYQCzI/btrFKbgku3b/OkWRrsp7bgsI6JKaPcJfS0/img.gif);
+			background-position-x: center;
+			background-position-y: center;
+			background-size: cover;
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -47,8 +53,9 @@
 			box.on('click', handleBoxClick);
 
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
+			function moveBoxTo(newPositionX, newPositionY) {
 				box.css("left", newPositionX);
+				box.css('top', newPositionY);
 			}
 
 			// changes the text displayed on the Box
@@ -62,15 +69,17 @@
 			
 			// TODO 2 - Variable declarations 
 			var positionX = 0;
-			
+
 			var positionY;
-		
-			var positionX;
+			var speedY;
 
 			var points = 0;
 
 			var speed = 10; 
 	
+			var boardHeight = jQuery(window).height(); 
+
+			var randNum = Math.random(2) * 100;
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
 			it should move the Box to a new location. If the box drifts off the screen
@@ -78,7 +87,7 @@
 			*/
 			function update() {
 				    /* Your Code to Increase positionX by 10 HERE*/
-				moveBoxTo(positionX);
+				moveBoxTo(positionX, positionY);
 
 				positionX = positionX + speed; 
 				
@@ -99,7 +108,6 @@
 			*/
 			function handleBoxClick() {
 				positionX = 0; 
-				positionX += speed;
 				changeBoxText(points);
 				points = points + 1;
 
