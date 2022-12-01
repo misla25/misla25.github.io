@@ -278,7 +278,7 @@
 			if (addCross) {
 			    // always make sure the cross is visible - it won't be if randomizeAlpha is false //
 			    randomizeAlpha = true;
-    			circle = draw.line(-(props.radius), 0, props.radius, 0, borderColor  || '#666', 2);
+    			circle = draw.line(-(props.radius), 0, props.radius, 0, borderColor  || '#000', 2);
     		    draw.line(0, -(props.radius), 0, props.radius, borderColor || '#000', 2, circle);
 			}
 			
@@ -299,8 +299,8 @@
     	
     	randomRadialProps: function (area, radiusMin, radiusMax, redMax, greenMax, blueMax) {
     	    return {
-    	        radius: randomIntBetween(radiusMin || 5, radiusMax || 20),
-    	        color: randomColor(redMax || 0, greenMax || 000, blueMax || 255),
+    	        radius: randomIntBetween(radiusMin || 5, radiusMax || 30),
+    	        color: randomColor(redMax || 100, greenMax || 100, blueMax || 100, Math.random()/5000),
     	        x: randomIntBetween(0, area.width),
     	        y: randomIntBetween(0, area.height)
     	    };
@@ -317,7 +317,7 @@
         blurFilterOn: blurFilterOn,
         
         fps: function (color) {
-            color = (color) ? color : '#FFF';
+            color = (color) ? color : 'light blue';
             var _textfield = new createjs.Text("-- fps", "bold 15px Arial", color);
             var _fps = new createjs.Container();
             _fps.textfield = _textfield;
