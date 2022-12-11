@@ -75,7 +75,7 @@ var init = function (window) {
         
             var place = 0; 
             while (place < circles.length){
-                game.checkCirclePosition(circles/2[place])
+                game.checkCirclePosition(circles[place])
                 place++
             }
             // TODO 9 : Iterate over the array

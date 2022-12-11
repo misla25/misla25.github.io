@@ -262,7 +262,7 @@
         		.setStrokeStyle(strokeStyle)
         		.beginStroke(strokeColor)
         		.beginFill(color)
-        		.drawPolyStar(dimensions.xOffset, dimensions.yOffset, radius, sides, pointSize || 0, angle);
+        		.drawPolyStar(dimensions.xOffset, dimensions.yOffset, radius, sides, pointSize || 2, angle);
         	
         	draw.setDimensionsOn(shape, dimensions);
         	shape.radius = radius;
@@ -278,8 +278,8 @@
 			if (addCross) {
 			    // always make sure the cross is visible - it won't be if randomizeAlpha is false //
 			    randomizeAlpha = true;
-    			circle = draw.line(-(props.radius), 0, props.radius, 0, borderColor  || '#000', 2);
-    		    draw.line(0, -(props.radius), 0, props.radius, borderColor || '#000', 2, circle);
+    			circle = draw.line(-(props.radius), 0, props.radius, 0, borderColor  || '#000', 1);
+    		    draw.line(0, -(props.radius), 0, props.radius, borderColor || '#000', 0, circle);
 			}
 			
 			if (borderColor && !borderThickness) { borderThickness = 1; }
@@ -299,8 +299,8 @@
     	
     	randomRadialProps: function (area, radiusMin, radiusMax, redMax, greenMax, blueMax) {
     	    return {
-    	        radius: randomIntBetween(radiusMin || 5, radiusMax || 30),
-    	        color: randomColor(redMax || 100, greenMax || 100, blueMax || 100, Math.random()/5000),
+    	        radius: randomIntBetween(radiusMin || 5, radiusMax || 40),
+    	        color: randomColor(redMax || 300, greenMax || 50, blueMax || 100, Math.random()/5000),
     	        x: randomIntBetween(0, area.width),
     	        y: randomIntBetween(0, area.height)
     	    };
