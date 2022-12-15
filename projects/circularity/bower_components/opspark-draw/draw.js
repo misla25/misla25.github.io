@@ -300,7 +300,7 @@
     	randomRadialProps: function (area, radiusMin, radiusMax, redMax, greenMax, blueMax) {
     	    return {
     	        radius: randomIntBetween(radiusMin || 5, radiusMax || 40),
-    	        color: randomColor(redMax || 300, greenMax || 50, blueMax || 100, Math.random()/5000),
+    	        color: randomColor(300, redMax || 300, greenMax || 100, blueMax || 300, Math.random()/5000),
     	        x: randomIntBetween(0, area.width),
     	        y: randomIntBetween(0, area.height)
     	    };
