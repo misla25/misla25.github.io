@@ -1,56 +1,54 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=fire">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pirata+One&effect=fire">
         <title> Mav's Bizzare Adventures</title>
     
         <style>
           body {
-          
+           
             background-image: url("https://64.media.tumblr.com/e308249250a1241c8dd2f3f57a23ed2f/7a0627c7f5e08f5e-5e/s1280x1920/b103794d2fae79c0837411bbf9b6a5e4366d090c.gifv"); 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-
-
-  font-family: "Sofia", sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/sofia/v14/8QIHdirahM3j_su5uI0.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-.font-effect-fire {
-  text-shadow: 0 -0.05em 0.2em #FFF, 0.01em -0.02em 0.15em #FE0, 0.01em -0.05em 0.15em #FC0, 0.02em -0.15em 0.2em #F90, 0.04em -0.20em 0.3em #F70, 0.05em -0.25em 0.4em #F70, 0.06em -0.2em 0.9em #F50, 0.1em -0.1em 1.0em #F40;
-  color: #ffe;
-}
-
-
-
-
-
-
-
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
 
 
   
+
+
+/* latin */
+
+
+  font-family: 'Pirata One';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/pirataone/v22/I_urMpiDvgLdLh0fAtofhi-Orr3CZZ4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+.font-effect-neon {
+  text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #fff, 0 0 0.4em #f7f,0 0 0.6em #f0f, 0 0 0.8em #f0f, 0 0 1.0em #f0f, 0 0 1.2em #f0f;
+  color: #fff;
+}
           
             
-            
           
-            
             header {
-             
-              font-size: 1.5em;
-              font: weight 1px;;
+              font-size: larger;
+              font: weight 1px;
           }
  
           #all-contents {
               max-width: 800px;
               margin: auto;
+              
+           
           }
- 
+       
+
           /* navigation menu */
+          
           nav {
               
               margin: 0 auto;
@@ -77,15 +75,18 @@
               text-decoration: none;
               color: rgb(0, 0, 0);
           }
- 
+          
+
           /* main container area beneath menu */
           main {
-             
               display: flex;
           }
           .content {
               flex: 1;
               padding: 15px;
+              font-size: x-large;
+              text-shadow: 0 0 0.1em #fff, 0 0 0.2em #fff, 0 0 0.3em #fff, 0 0 0.4em #f7f,0 0 0.6em #f0f, 0 0 0.8em #f0f, 0 0 1.0em #f0f, 0 0 1.2em #f0f;
+  color: #fff;
           }
         /* portfolio styles */
          .content h1 {
@@ -99,27 +100,24 @@
          }
 
          #portfolio li {
-             background: #fff;
+             /*background: black;*/
              padding: 10px;
              border-radius: 10px;
              margin-bottom: 10px;
          }
 
          #portfolio li:hover {
-             background: #eee;
+             background: rgb(108, 174, 255);
          }
 
          #portfolio a {
              text-decoration: none;
-             color: #454545;
+             color: #000000;
          }
       </style>
     </head>
 
     <body>
-
-    
-
 
       
       <div id="all-contents">
@@ -127,21 +125,24 @@
             <h1></h1>
             <ul id="nav-ul">
               <li class="nav-li">
-                <a class="nav-a" href="index.html">Home</a>
+                <a class="font-effect-neon" href="index.html" style="color: #000000" style= "font-size:larger">home</a>
+                
 
               </li>
               <li class="nav-li">
-                <a class="font-effect-fire">portfolio</a>
-             
+                <a class="font-effect-neon" style="color: #000000" style= "font-size:larger">portfolio</a>
+                
+                
               </li>
             </ul>
         </nav>
+
         <nav>
           <!-- Nav stuff here...-->
       </nav>
       <main>
           <div class="content">
-              <h1 class="font-effect-fire">Portfolio</h1>
+              <h1 class="font-effect-neon">Portfolio</h1>
               <ul id="portfolio">
                 <li><a href="projects/platformer/">Platformer : A cannon - dodging, collectible - grabbing adventure game for Hallebot</a></li>
                 <li><a href="projects/bouncing-box/">Bouncing Box : A project that gives you a taste of game development on the web </a></li>
