@@ -32,6 +32,10 @@ function runProgram(){
     "RIGHT": 39,
     "UP": 38,
     "DOWN": 40,
+    "W": 87,
+    "A": 65,
+    "S": 83,
+    "D": 68
   }
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -94,6 +98,49 @@ function handleKeyDown (event){
         speedY = 0; 
       }
     } 
+  ///WASD
+  function handleKeyDown (event){ 
+    if (event.which === KEY.A) {
+      speedX = -5;
+      console.log("a pressed"); 
+    } 
+    /*
+    else if (event.which === KEY.ENTER) {
+      speedX = -5;
+       console.log("enter pressed");
+    }
+    */
+    else if(event.which ===KEY.W){
+      speedY = 5;
+      console.log("w pressed");
+    }
+    else if(event.which === KEY.D){
+      speedX = 5;
+      console.log("d pressed");
+      
+    }
+    else if(event.which === KEY.S){
+      speedY = -5;
+      console.log("s pressed");
+    }
+  }
+  function handleKeyUp (event){
+    if(event.which === KEY.A){
+      speedX = 0;
+    }
+    else if(event.which === KEY.D){
+      speedX = 0;
+    }
+    else if(event.which === KEY.W){
+      speedY = 0;
+    }
+    // else if(event.which === KEY.ENTER){
+    //   speedX = 0;
+    // }
+    else if(event.which === KEY.S){
+      speedY = 0; 
+    }
+  } 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -104,6 +151,7 @@ function repositionGameItem(){
 function redrawGameItem(){
   $("#walker").css("bottom", positionY); // draw the box in the new location, positionX pixels away from the "left"
   $("#walker").css("left", positionX);
+  //$("#walker").css()
  
 //   $("#walker").css("right", );
 //   $("#walker").css("left", positionY);
