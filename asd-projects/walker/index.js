@@ -1,4 +1,4 @@
-/* global $, sessionStorage */
+// /* global $, sessionStorage */
 
 $(document).ready(runProgram); // wait for the HTML / CSS elements of the page to fully load, then execute runProgram()
   
@@ -12,19 +12,23 @@ function runProgram(){
   var FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
   var positionX = 0; // the x-coordinate location for the box
   var positionY = 0;
-  var speedX = 0; // the speed for the box along the x-axis 
+ var speedX = 0; 
   var speedY = 0;
 
-
-  // Game Item Objects
-
+  //Game Item Objects
+ var walker2 = {};
+ walker2.id = "#walker2";
+//  var walker = {};
+//  walker.id = "#walker";
 
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
   
   $(document).on('keydown', handleKeyDown); 
   $(document).on('keyup', handleKeyUp); 
-    
+
+  $(document).on('keydown', handleKeyS); 
+  $(document).on('keyup', handleKeyW); 
                          // change 'eventType' to the type of event you want to handle
   var KEY = {
     "ENTER": 13,
@@ -48,16 +52,13 @@ function runProgram(){
   function newFrame() {
     redrawGameItem();
     repositionGameItem();
+    redrawWalker2();
   }
   
   /* 
   Called in response to events.
   */
- /*
-  function handleEvent(event) {
 
-  }
-*/
 function handleKeyDown (event){ 
       if (event.which === KEY.LEFT) {
         speedX = -5;
@@ -98,20 +99,19 @@ function handleKeyDown (event){
         speedY = 0; 
       }
     } 
+
+//   let walker2 = document.querySelector("#walker2");
+
   ///WASD
-  function handleKeyDown (event){ 
+ 
+  //WASD 2
+  function handleKeyS (event){ 
     if (event.which === KEY.A) {
       speedX = -5;
       console.log("a pressed"); 
     } 
-    /*
-    else if (event.which === KEY.ENTER) {
-      speedX = -5;
-       console.log("enter pressed");
-    }
-    */
     else if(event.which ===KEY.W){
-      speedY = 5;
+    speedY = 5;
       console.log("w pressed");
     }
     else if(event.which === KEY.D){
@@ -124,7 +124,7 @@ function handleKeyDown (event){
       console.log("s pressed");
     }
   }
-  function handleKeyUp (event){
+  function handleKeyW (event){
     if(event.which === KEY.A){
       speedX = 0;
     }
@@ -134,13 +134,13 @@ function handleKeyDown (event){
     else if(event.which === KEY.W){
       speedY = 0;
     }
-    // else if(event.which === KEY.ENTER){
-    //   speedX = 0;
-    // }
     else if(event.which === KEY.S){
       speedY = 0; 
     }
   } 
+
+
+  
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -151,12 +151,12 @@ function repositionGameItem(){
 function redrawGameItem(){
   $("#walker").css("bottom", positionY); // draw the box in the new location, positionX pixels away from the "left"
   $("#walker").css("left", positionX);
-  //$("#walker").css()
- 
-//   $("#walker").css("right", );
-//   $("#walker").css("left", positionY);
-// 
 }
+function redrawWalker2(){
+    $("#walker2").css("top", positionY);
+    $("#walker2").css("left", positionX);
+}
+
   
   function endGame() {
     // stop the interval timer
@@ -165,16 +165,5 @@ function redrawGameItem(){
     // turn off event handlers
     $(document).off();
   }
- //$("#board").offset(positionX,positionY);
-  
- /* var boardWidth = boardWidth();
-  function update() {
-        moveBoxTo(positionX, positionY);
-        //positionX = positionX + speed; 
-        if (positionX > boardWidth) {
-           speed = speed * -1;
-          }
-          if (positionX < 0) {
-            speed = speed * -1;
-          } 
-        } */}
+//  $("#board").offset(positionX,positionY);
+}
