@@ -151,7 +151,7 @@ function repositionGameItem(){
 function redrawGameItem(){
   $("#walker").css("bottom", positionY); // draw the box in the new location, positionX pixels away from the "left"
   $("#walker").css("left", positionX);
-}
+}``
 function redrawWalker2(){
     $("#walker2").css("top", positionY);
     $("#walker2").css("left", positionX);

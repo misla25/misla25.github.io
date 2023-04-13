@@ -6,12 +6,12 @@ body {
 .container {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
+  display: flex; /* might changr back to flexbox/flex*/
+ align-items: center;
   justify-content: center;
-}
+} 
 
-
+/*FIX!!!!!!!!*/
 #playerOneScoreBoard {
   width: 80px;
   height: 80px;
@@ -31,30 +31,32 @@ body {
   top: 400px; 
 }
 
-
 #leftPaddle{
   width: 20px;
   height: 80px;
   background-color: rgb(255, 126, 126);
   border-radius: 20px;
-  position: absolute;
+  position: relative;
 }
 #rightPaddle{
   width: 20px;
   height: 80px;
   background-color: rgb(180, 150, 208);
   border-radius: 20px;
-  position: absolute;
-  
+  position: relative;
+  left: 800px;
 } 
 
 #board {
   width: 90vmin;
+   /*height: 500px; /*might delete */
   border: 1px solid white;
-  position: relative;
+   position: relative; /* might change back to relative and uncomment stuff */
   box-sizing: border-box;
+  /*left: 450px; /*might delete left and top values*/
+ top: 90px;
 }
-
+ 
 #board:after {
   content: "";
   display: block;
@@ -69,16 +71,16 @@ body {
 #ball {
   width: 20px;
   height: 20px;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: rgb(66, 0, 128);
   
-  /* positioning */
-  position: absolute;
-  top: 152px;
-  left: 430px;
+  /* positioning*/
+  position: relative;
+  top: 82px;
+  left: 200px;
 }
-/* 
-#gameItem {
+
+/* #gameItem {
   background-color: teal;
   width: 50px;
   height: 50px;
