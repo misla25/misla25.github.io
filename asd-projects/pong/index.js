@@ -1,8 +1,8 @@
 /* global $, sessionStorage */
 
 $(document).ready(runProgram); // wait for the HTML / CSS elements of the page to fully load, then execute runProgram()
-  
-function runProgram(){
+
+function runProgram() {
   ////////////////////////////////////////////////////////////////////////////////
   //////////////////////////// SETUP /////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -11,22 +11,23 @@ function runProgram(){
   const FRAME_RATE = 60;
   const FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
 
-  function wallCollision(object){
+  function wallCollision(object) {
     const BOARD_WIDTH = $("#board").width();
     const BOARD_HEIGHT = $("#board").height();
-    const BOARD_X = 0; 
+    const BOARD_X = 0;
     const BOARD_Y = 0;
+    //if (object.x less than 0) code block console.log bigger than...
   }
 
-// Game Item Objects
+  // Game Item Objects
 
 
   // one-time setup
-  startBall();
-  let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);  
-   // execute newFrame every 0.0166 seconds (60 Frames per second)
-  $(document).on("keyDown", handleKeyDown);   
-  $(document).on("keyUp", handleKeyUp);                      // change 'eventType' to the type of event you want to handle
+  //startBall();
+  let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);
+  // execute newFrame every 0.0166 seconds (60 Frames per second)
+  $(document).on("keydown", handleKeyDown);
+  $(document).on("keyup", handleKeyUp);                      // change 'eventType' to the type of event you want to handle
 
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
@@ -38,71 +39,92 @@ function runProgram(){
   */
 
   function newFrame() {
-    redrawGameItem();
+    moveObject(leftPaddle);
+    moveObject(rightPaddle);
+    //wallCollision
   }
   // function repositionGameItem(){
   //   positionX += speedX; // update the position of the box along the x-axis
   //   positionY += speedY;  // draws the box in the new location, positionX pixels away from the "left"
   // }
-  
-  function redrawGameItem(){
+
+  function redrawGameItem() {
     $("#leftPaddle").css("top", leftPaddle.y); // draw the box in the new location, positionX pixels away from the "left"
-    $("#leftPaddle").css("left",leftPaddle.x ); //
+    $("#leftPaddle").css("left", leftPaddle.x); //
     $("#rightPaddle").css("top", rightPaddle.y);
     $("#rightPaddle").css("right", rightPaddle.x); //
   }
 
 
- //UP AND DOWN ARROWS
-  var KEYCODE = {
-  DOWN: 40,
-  UP: 38,
-}
+  //UP AND DOWN ARROWS
+  var KEY = {
+    DOWN: 40,
+    UP: 38,
+    W: 87,
+    S: 83
+  }
 
   /* 
   Called in response to events.
   */
   function handleKeyDown(event) {
-    if (event.which === KEY.DOWN) {
-      console.log("down pressed"); 
-    } 
-    else if (event.which === KEY.UP){
-      console.log("up pressed"); 
+      if (event.which === KEY.DOWN) {
+        leftPaddle.speedY  = -5;
+        console.log("down pressed");
+      }
+      else if (event.which === KEY.UP) {
+        leftPaddle.speedY   += 5;
+        console.log("up pressed");
+      }
+      else if (event.which === KEY.W){
+        rightPaddle.speedY += 5;
     }
+    else if(event.which === KEY.S){
+      rightPaddle.speedY = -5;
   }
-  function handleKeyUp(event){
-    if(event.which === KEY.UP){
-      console.log("up pressed"); 
-    }
-    else if(event.which === KEY.DOWN) {
-      console.log("down pressed"); 
-    } 
   }
 
-//FACTORY FUNCTIONS 
-function lPaddle(id,x,y, speedX, speedY, width, height){
-  var leftPaddle = {};
-  leftPaddle.id = "#leftPaddle";
-  leftPaddle.x = parseFloat($("#leftPaddle").css("left"));
-  leftPaddle.y = parseFloat($("#leftPaddle").css("top"));
-  leftPaddle.speedX = 5; //
-  leftPaddle.speedY = 5; //
-  leftPaddle.width = $("#leftPaddle").width();
-  leftPaddle.height = $("#leftPaddle").height();
-  return leftPaddle;
-}
-function rPaddle(id,x,y, speedX, speedY, width, height){
-  var rightPaddle = {};
-  rightPaddle.id = "#rightPaddle";
-  rightPaddle.x = parseFloat($("#rightPaddle").css("left"));
-  rightPaddle.y = parseFloat($("#rightPaddle").css("top"));
-  rightPaddle.speedX = 5; //
-  rightPaddle.speedY = 5; //
-  rightPaddle.width = $("#rightPaddle").width();
-  rightPaddle.height = $("#rightPaddle").height();
-  return rightPaddle;
-}
+  function handleKeyUp(event) {
+    if (event.which === KEY.UP) {
+      leftPaddle = 0;
+      console.log("up pressed");
+    }
+    else if (event.which === KEY.DOWN) {
+      leftPaddle = 0;
+      console.log("down pressed");
+    }
+    else if (event.which === KEY.W) {
+      rightPaddle = 0;
+      console.log("up pressed");
+    }
+    else if (event.which === KEY.S) {
+      rightPaddle = 0;
+      console.log("dowm pressed");
+    }
+  } 
 
+  //FACTORY FUNCTIONS 
+  function GameItem(id){
+    var item = {};
+    item.id = id;
+    item.x = parseFloat($(id).css("left"));
+    item.y = parseFloat($(id).css("top"));
+    item.speedX = 0; //
+    item.speedY = 0; //
+    item.width = $(id).width();
+    item.height = $(id).height();
+    return item;
+  }
+
+  var leftPaddle = GameItem("#leftPaddle");
+  var rightPaddle = GameItem("#rightPaddle");
+  var ball = GameItem("#ball");
+  var board = GameItem("#board");
+  var playerOneScoreBoard = GameItem("#playerOneScoreBoard");
+  var playerTwoScoreBoard = GameItem("#playerTwoScoreBoard");
+
+  //SCORING
+  //function doCollide(){
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
@@ -116,17 +138,13 @@ function startBall(){
   ball.y = document.getElementById("center"); //
   return ball;
 }
-function moveObject(object){
-  //
-  object.x =$("#leftPaddle").css("left", parseFloat($("#leftPaddle").css("left")))
-  object.y = $("#leftPaddle").css("top", parseFloat($("#leftPaddle").css("top")))
-  object.x =$("#rightPaddle").css("left", parseFloat($("#rightPaddle").css("left")))
-  object.y = $("#rightPaddle").css("top", parseFloat($("#rightPaddle").css("top")))
-  object.x =$("#ball").css("left", $("#ball").css("left"))
-  object.y = $("#ball").css("top", $("#ball").css("top"))
-  return object;
-}
-  
+function moveObject(object) {
+    object.y += object.speedY;
+    object.x += object.speedX;
+    $(object.id).css("left", object.x);
+    $(object.id).css("top", object.y);
+  }
+
   function endGame() {
     // stop the interval timer
     clearInterval(interval);
@@ -134,5 +152,4 @@ function moveObject(object){
     // turn off event handlers
     $(document).off();
   }
-  
 }

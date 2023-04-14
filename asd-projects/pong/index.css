@@ -44,11 +44,11 @@ body {
   background-color: rgb(180, 150, 208);
   border-radius: 20px;
   position: relative;
-  left: 800px;
+  left: 480px;
 } 
 
 #board {
-  width: 90vmin;
+  width: 60vmin;
    /*height: 500px; /*might delete */
   border: 1px solid white;
    position: relative; /* might change back to relative and uncomment stuff */
