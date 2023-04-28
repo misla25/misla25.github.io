@@ -20,7 +20,7 @@ function resetAndRender() {
 // all of your apply functions
 function applyAndRender() {
   // Multiple TODOs: Call your apply function(s) here
-applyFilter();
+applyFilter(reddify);
   
 
   // do not change the below line of code
@@ -32,24 +32,36 @@ applyFilter();
 /////////////////////////////////////////////////////////
 
 // TODO 1, 2 & 4: Create the applyFilter function here
-function applyFilter(){
+function applyFilter(filterFunction){
 for(var i = 0; i < image.length; i++){
-  var image = image[i];
-  for(var p = 0; p < image.length; p++){
-    display("image[" + i + "] [" + p + "] =" + image[p]);
+  var row= image[i];
+    for(var p = 0; p < row.length; p++){
+      var rgbString = row[p];
+      var rgbNumbers = rgbStringToArray(rgbString);
+      filterFunction(rgbNumbers); 
+      rgbString = rgbArrayToString(rgbNumbers);
+      row[p] = rgbString;
+    }
+    
   }
-  var rgbNumbers = rgbStringToArray(rgbString)
-}
-}
+} 
 
 // TODO 7: Create the applyFilterNoBackground function
+function applyFilterNoBackground(){
 
+}
 
 // TODO 5: Create the keepInBounds function
+function keepInBounds(number){
 
+
+  Math.min(255, number>255)
+}
 
 // TODO 3: Create reddify function
-
+function reddify(rouge){
+  rouge[RED]= 200;
+}
 
 // TODO 6: Create more filter functions
 
