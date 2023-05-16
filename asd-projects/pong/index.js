@@ -17,8 +17,9 @@ function runProgram() {
     const BOARD_X = 0;
     const BOARD_Y = 0;
     //if (object.x less than 0) code block console.log bigger than...
+    if(object.x > object.left){
   }
-
+  }
   // Game Item Objects
 
 
@@ -152,4 +153,5 @@ function moveObject(object) {
     // turn off event handlers
     $(document).off();
   }
-}
+  }
+

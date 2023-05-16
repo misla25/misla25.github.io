@@ -46,10 +46,12 @@
     position: relative;
 }
 .bubbleElement {
-    background: url('img/bubble.png');
+    background: url('https://miro.medium.com/v2/resize:fit:720/format:webp/1*c-V5vPVeWLPsouWBJc6gxA.png');
     /*border: 2px aqua ridge;*/
 }
 .quickElement {
-    background: url('img/quick.png');
-    /*border: 2px firebrick ridge;*/
+    background: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6904009b-4c13-42ec-82f8-35464ab6a2fb/d5f6jo6-dc16a07e-17ee-4bd3-b126-ef60ef154cf8.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzY5MDQwMDliLTRjMTMtNDJlYy04MmY4LTM1NDY0YWI2YTJmYlwvZDVmNmpvNi1kYzE2YTA3ZS0xN2VlLTRiZDMtYjEyNi1lZjYwZWYxNTRjZjgucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ba9d4y5TJh0lzAQ8I0UarZmUltYTkJx0u4jtOoAOI9E');
+    /*border: 2px luna-p;*/
 }
+
+/*'img/quick.png'
