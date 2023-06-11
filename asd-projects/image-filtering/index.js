@@ -16,8 +16,8 @@ function resetAndRender() {
   render($("#display"), image);
 }
 // TODO 3: Create reddify function
-function reddify(rouge){
-  rouge[RED]= 200;
+function reddify(array){
+  array[RED]= 200;
 }
 
 // this function applies the filters to the image and is where you should call
@@ -25,7 +25,8 @@ function reddify(rouge){
 function applyAndRender() {
   // Multiple TODOs: Call your apply function(s) here
 applyFilter(reddify);
-  
+applyFilter(decreaseBlue);
+applyFilter(increaseGreenByBlue);  
 
   // do not change the below line of code
   render($("#display"), image);
@@ -48,26 +49,37 @@ for(var i = 0; i < image.length; i++){
     
   }
 } 
+var currentPixel = array[gray] //????
 
 // TODO 7: Create the applyFilterNoBackground function
 function applyFilterNoBackground(){
-  // var backgroundColor = [SQUARE_SIZE]
+  var backgroundColor = array[SQUARE_SIZE] 
+  /*store the background color of the image in a variable to be used later. 
+  The background color can be gotten by looking at the top left pixel of your image
+   (recall what the index numbers for the top left pixel are).*/ 
   for(var i = 0; i < image.length; i++){
     var row= image[i];
       for(var p = 0; p < row.length; p++){
-        var rgbString = row[p];
-        var rgbNumbers = rgbStringToArray(rgbString);
-        filterFunction(rgbNumbers); 
-        rgbString = rgbArrayToString(rgbNumbers);
         row[p] = rgbString;
-      //   if(){
-      // }
-}
+        if( currentPixel === backgroundColor){
+          /* a conditional statement to check if the current pixel value is equal to the background pixel value.
+           If it is not, then apply the filter.  */
+          var rgbString = row[p];
+          var rgbNumbers = rgbStringToArray(rgbString);
+          filterFunction(rgbNumbers); 
+          rgbString = rgbArrayToString(rgbNumbers);
+      } else{
+        applyFilter(); 
+      }
+    }
+  }
 }
 // TODO 5: Create the keepInBounds function
 function keepInBounds(number){
-  // Math.min(255, number>255) 
-  // Math.max(0, number<0);
+  Math.min(255, number>255) 
+  Math.max(0, number<0);
+  //var value = 0 <number<225 ? number : null 
+  Math.min(0<number<255, number)
   var init = Math.min(number, 255)
   var finalNumber = Math.max(init, 0)
   return finalNumber
@@ -76,21 +88,16 @@ function keepInBounds(number){
 // // TODO 3: Create reddify function
   /*SAM: As a rule of thumb, if you are passing in an array as a parameter to a function, call it array or arr, not rouge. 
   */
-// function reddify(rouge){
-//   rouge[RED]= 200;
-// }
-
+//DONE
 // TODO 6: Create more filter functions
 function decreaseBlue(arr){
-  /*SAM: You need to reference the array that is being passed in as an argument here. For example, you can't just use [BLUE], 
-    it needs to be arr[BLUE], because [BLUE] is just a number (see image.js line 7)
-  */
-  [BLUE] = keepInBounds([BLUE] - 50);
+  arr[BLUE] = keepInBounds(arr[BLUE] - 50);
 }
-function increaseGreenByBlue(aeray) {
-    /*SAM: Same error as above. 
-  */
-  [GREEN] = keepInBounds([BLUE] + [GREEN])
-  }
+
+function increaseGreenByBlue(array){
+  array[GREEN] = keepInBounds(array[BLUE] + array[GREEN]);
 }
+
+
+
 // CHALLENGE code goes below here//

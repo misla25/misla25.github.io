@@ -39,6 +39,7 @@ $(document).ready(function () {
   // TODO 0 complete
 
   // TODO 1: create a new shape object and add it to the array
+  //add it to the array
   var shape = {
     color : "blue",
     shape: "circle",
@@ -55,7 +56,7 @@ for(var i = 0; i < dataShapes.length; i++){
   else if (currentShape.color === "blue"){
     currentShape.goodBehavior = "blink";
   }
-  else{
+  else {
     currentShape.goodBehavior = "spin";
   }
 
@@ -64,10 +65,6 @@ for(var i = 0; i < dataShapes.length; i++){
   function handleStatic(data){
     setBackgroundWithObject(data);
     animationDetails.displayType = 1;
-
-    // let animationDetails {
-    //   displayType = 1,
-    // }
   }
   // TODO 4-a: add a function that handles the good display type
   function handleGood(color, shape, repeat){
@@ -94,18 +91,18 @@ for(var i = 0; i < dataShapes.length; i++){
     handleStatic(currentShape);
   }
 
-  function goodDisplay() {
-    // TODO 4-b: call your handleGood function
-    let currentShape = dataShapes[currentIndex]
-    handleGood(currentShape.color, currentShape.repeat, currentShape.shape);
-  }
+  // function goodDisplay() {
+  //   // TODO 4-b: call your handleGood function
+  //   let currentShape = dataShapes[currentIndex]
+  //   handleGood(currentShape.color, currentShape.repeat, currentShape.shape);
+  // }
 
-  function badDisplay() {
-    // TODO 5-b: call your handleBad function
-    let currentShape = dataShapes[currentIndex]
-    var repeat = currentShape.repeat
-    handleBad(currentShape, repeat);
-  }
+  // function badDisplay() {
+  //   // TODO 5-b: call your handleBad function
+  //   let currentShape = dataShapes[currentIndex]
+  //   var repeat = currentShape.repeat
+  //   handleBad(currentShape, repeat);
+  // }
 
   /////////////////////////////////////////////////
   // ALL OF YOUR CODE SHOULD GO ABOVE HERE ////////
@@ -153,7 +150,6 @@ for(var i = 0; i < dataShapes.length; i++){
 
   // This function increments the index of the currently selected object in the array (and resets the display type)
   function incrementIndex() {
-    currentIndex =
       currentIndex === dataShapes.length - 1 ? 0 : currentIndex + 1;
     resetDisplay();
   }

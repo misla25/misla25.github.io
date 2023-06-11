@@ -6,7 +6,7 @@ function runProgram() {
   ////////////////////////////////////////////////////////////////////////////////
   //////////////////////////// SETUP /////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
-
+  startBall();
   // Constant Variables
   const FRAME_RATE = 60;
   const FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
@@ -16,15 +16,28 @@ function runProgram() {
     const BOARD_HEIGHT = $("#board").height();
     const BOARD_X = 0;
     const BOARD_Y = 0;
-    //if (object.x less than 0) code block console.log bigger than...
-    if(object.x > object.left){
-  }
-  }
-  // Game Item Objects
+    
+    //
+  //   object.x = object.x + speed; 
+  //   //left
+  //   if(object.x > BOARD_X){
+  //     object.speedX = speed * 1;
+  //   }
+  //   //top
+  //   if(object.y > BOARD_Y){
+  //     object.speedY = speed * -1
+  //   }
+  //   //right
+  //   if(object.x + object.width > BOARD_WIDTH){
+  //    object.speedX = speed * -1
+  //   }
+  //   //top
+  //   if(object.y + object.height > BOARD_HEIGHT){
+  //     object.speedY = speed * 1
+  //   }
+  // 
+}
 
-
-  // one-time setup
-  //startBall();
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);
   // execute newFrame every 0.0166 seconds (60 Frames per second)
   $(document).on("keydown", handleKeyDown);
@@ -33,7 +46,7 @@ function runProgram() {
   ////////////////////////////////////////////////////////////////////////////////
   ///////////////////////// CORE LOGIC ///////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
-
+  
   /* 
   On each "tick" of the timer, a new frame is dynamically drawn using JavaScript
   by calling this function and executing the code inside.
@@ -42,79 +55,88 @@ function runProgram() {
   function newFrame() {
     moveObject(leftPaddle);
     moveObject(rightPaddle);
-    //wallCollision
+    wallCollision();
   }
-  // function repositionGameItem(){
-  //   positionX += speedX; // update the position of the box along the x-axis
-  //   positionY += speedY;  // draws the box in the new location, positionX pixels away from the "left"
-  // }
+  function repositionGameItem(){
+    positionX += speedX; // update the position of the box along the x-axis
+    positionY += speedY;  // draws the box in the new location, positionX pixels away from the "left"
+  }
 
   function redrawGameItem() {
     $("#leftPaddle").css("top", leftPaddle.y); // draw the box in the new location, positionX pixels away from the "left"
     $("#leftPaddle").css("left", leftPaddle.x); //
     $("#rightPaddle").css("top", rightPaddle.y);
     $("#rightPaddle").css("right", rightPaddle.x); //
-  }
+    $("#ball").css("top",ball.y);
+    $("#ball").css("left",ball.x);
+    $("#ball").css("top",ball.y);
+    $("#ball").css("right",ball.x);
 
+  }
 
   //UP AND DOWN ARROWS
   var KEY = {
-    DOWN: 40,
-    UP: 38,
-    W: 87,
-    S: 83
+    "DOWN": 40,
+    "UP": 38,
+    "W": 87,
+    "S": 83
   }
-
+ 
   /* 
   Called in response to events.
   */
   function handleKeyDown(event) {
-      if (event.which === KEY.DOWN) {
-        leftPaddle.speedY  = -5;
-        console.log("down pressed");
+    if (event.which === KEY.UP) {
+      rightPaddle.speedY   = -5;
+      console.log("up pressed");
       }
-      else if (event.which === KEY.UP) {
-        leftPaddle.speedY   += 5;
-        console.log("up pressed");
-      }
-      else if (event.which === KEY.W){
-        rightPaddle.speedY += 5;
+    else if(event.which === KEY.DOWN) {
+      rightPaddle.speedY  = 5;
+      console.log("down pressed");
     }
-    else if(event.which === KEY.S){
-      rightPaddle.speedY = -5;
+      else if (event.which === KEY.W){
+      leftPaddle.speedY = -5;
+      console.log("up pressed");
+      }
+      else if(event.which === KEY.S){
+      leftPaddle.speedY = 5;
+      console.log("down pressed");
+    }
   }
-  }
+  
 
   function handleKeyUp(event) {
     if (event.which === KEY.UP) {
-      leftPaddle = 0;
+      rightPaddle.speedY = 0;
       console.log("up pressed");
     }
     else if (event.which === KEY.DOWN) {
-      leftPaddle = 0;
+      rightPaddle.speedY = 0;
       console.log("down pressed");
     }
     else if (event.which === KEY.W) {
-      rightPaddle = 0;
+      leftPaddle.speedY = 0;
       console.log("up pressed");
     }
     else if (event.which === KEY.S) {
-      rightPaddle = 0;
-      console.log("dowm pressed");
+      leftPaddle.speedY = 0;
+      console.log("down pressed");
     }
   } 
 
+
+
   //FACTORY FUNCTIONS 
   function GameItem(id){
-    var item = {};
-    item.id = id;
-    item.x = parseFloat($(id).css("left"));
-    item.y = parseFloat($(id).css("top"));
-    item.speedX = 0; //
-    item.speedY = 0; //
-    item.width = $(id).width();
-    item.height = $(id).height();
-    return item;
+    var object = {};
+    object.id = id;
+    object.x = parseFloat($(id).css("left"));
+    object.y = parseFloat($(id).css("top"));
+    object.speedX = 0; //
+    object.speedY = 0; //
+    object.width = $(id).width();
+    object.height = $(id).height();
+    return object;
   }
 
   var leftPaddle = GameItem("#leftPaddle");
@@ -125,18 +147,30 @@ function runProgram() {
   var playerTwoScoreBoard = GameItem("#playerTwoScoreBoard");
 
   //SCORING
-  //function doCollide(){
+  
+  if (doCollide(ball, paddleLeft)) {
+    // bounce ball off paddle Left
+    $("#scoreId").text(updatedScore)
+   }
 
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
+function doCollide(obj1,obj2){
+  if(obj1.x < obj2.width && obj1.width > obj2.x && obj1.y > obj2.height && obj1.height < obj2.y){
+    return true
+  } else{
+    return false
+  }
+}
 function startBall(){
+  //maybe change variable
   var ball = {};
   ball.id = "#ball";
   ball.speedX = randomNum = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
-  ball.speedY = randomNum = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
-  ball.x = document.getElementById("center"); //
-  ball.y = document.getElementById("center"); //
+  ball.speedY = randomNum = (Math.random() * 4 + 2) * (Math.random() > 0.5 ? -1 : 1);
+  ball.x = 700;
+  ball.y = 430; //document.getElementById("center"); //
   return ball;
 }
 function moveObject(object) {
@@ -153,5 +187,6 @@ function moveObject(object) {
     // turn off event handlers
     $(document).off();
   }
-  }
-
+  endGame();
+}
+ 

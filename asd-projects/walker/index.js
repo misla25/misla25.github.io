@@ -10,16 +10,11 @@ function runProgram(){
   // Constant Variables
   var FRAME_RATE = 60;
   var FRAMES_PER_SECOND_INTERVAL = 1000 / FRAME_RATE;
-  var positionX = 0; // the x-coordinate location for the box
-  var positionY = 0;
- var speedX = 0; 
-  var speedY = 0;
-
   //Game Item Objects
- var walker2 = {};
- walker2.id = "#walker2";
-//  var walker = {};
-//  walker.id = "#walker";
+ 
+  // var gameItem = {
+
+  // }
 
   // one-time setup
   var interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);   // execute newFrame every 0.0166 seconds (60 Frames per second)
@@ -50,9 +45,9 @@ function runProgram(){
   by calling this function and executing the code inside.
   */
   function newFrame() {
-    redrawGameItem();
+    redrawGameItem(walker);
+    redrawGameItem(walker2);
     repositionGameItem();
-    redrawWalker2();
   }
   
   /* 
@@ -61,42 +56,42 @@ function runProgram(){
 
 function handleKeyDown (event){ 
       if (event.which === KEY.LEFT) {
-        speedX = -5;
+        walker.speedX = -5;
         console.log("left pressed"); 
       } 
-      else if (event.which === KEY.ENTER) {
-        speedX = -5;
-         console.log("enter pressed");
-      }
+      // else if (event.which === KEY.ENTER) {
+      //   walker.speedX = -5;
+      //    console.log("enter pressed");
+      // }
       else if(event.which ===KEY.UP){
-        speedY = 5;
+        walker.speedY = 5;
         console.log("up pressed");
       }
       else if(event.which === KEY.RIGHT){
-        speedX = 5;
+        walker.speedX = 5;
         console.log("right pressed");
         
       }
       else if(event.which === KEY.DOWN){
-        speedY = -5;
+        walker.speedY = -5;
         console.log("down pressed");
       }
     }
     function handleKeyUp (event){
       if(event.which === KEY.LEFT){
-        speedX = 0;
+        walker.speedX = 0;
       }
       else if(event.which === KEY.RIGHT){
-        speedX = 0;
+        walker.speedX = 0;
       }
       else if(event.which === KEY.UP){
-        speedY = 0;
+        walker.speedY = 0;
       }
-      else if(event.which === KEY.ENTER){
-        speedX = 0;
-      }
+      // else if(event.which === KEY.ENTER){
+      //   walker.speedX = 0;
+      // }
       else if(event.which === KEY.DOWN){
-        speedY = 0; 
+        walker.speedY = 0; 
       }
     } 
 
@@ -107,35 +102,35 @@ function handleKeyDown (event){
   //WASD 2
   function handleKeyS (event){ 
     if (event.which === KEY.A) {
-      speedX = -5;
+      walker2.speedX = -5;
       console.log("a pressed"); 
     } 
-    else if(event.which ===KEY.W){
-    speedY = 5;
-      console.log("w pressed");
+    else if(event.which ===KEY.S){
+      walker2.speedY = 5;
+      console.log("s pressed");
     }
     else if(event.which === KEY.D){
-      speedX = 5;
+      walker2.speedX = 5;
       console.log("d pressed");
       
     }
-    else if(event.which === KEY.S){
-      speedY = -5;
-      console.log("s pressed");
+    else if(event.which === KEY.W){
+      walker2.speedY = -5;
+      console.log("w pressed");
     }
   }
   function handleKeyW (event){
     if(event.which === KEY.A){
-      speedX = 0;
+      walker2.speedX = 0;
     }
     else if(event.which === KEY.D){
-      speedX = 0;
+      walker2.speedX = 0;
     }
     else if(event.which === KEY.W){
-      speedY = 0;
+      walker2.speedY = 0;
     }
     else if(event.which === KEY.S){
-      speedY = 0; 
+      walker2.speedY = 0; 
     }
   } 
 
@@ -145,19 +140,49 @@ function handleKeyDown (event){
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
 function repositionGameItem(){
-  positionX += speedX; // update the position of the box along the x-axis
-  positionY += speedY;
+  walker.x += walker.speedX; // update the position of the box along the x-axis
+  walker.y += walker.speedY;
+  walker2.x += walker2.speedX; 
+  walker2.y += walker2.speedY;
 }
 function redrawGameItem(){
-  $("#walker").css("bottom", positionY); // draw the box in the new location, positionX pixels away from the "left"
-  $("#walker").css("left", positionX);
-}``
-function redrawWalker2(){
-    $("#walker2").css("top", positionY);
-    $("#walker2").css("left", positionX);
+  $("#walker").css("bottom", walker.y); // draw the box in the new location, positionX pixels away from the "left"
+  $("#walker").css("left", walker.x);
+  $("#walker2").css("top", walker2.y);
+  $("#walker2").css("left", walker2.x);
 }
 
-  
+function GameObject(id){
+  var obj = {};
+  obj.id = id;
+  obj.width = $(id).width();
+  obj.height = $(id).height();
+  obj.x = 0;
+  obj.y =  0;
+  obj.color = $(id).css("color")
+  obj.speedX = 0;
+  obj.speedY = 0;
+  return obj;
+}
+var walker = GameObject("#walker");
+var walker2 = GameObject("#walker2");
+
+// function update() {
+//   /* Your Code to Increase positionX by 10 HERE*/
+//   moveBoxTo(positionX, positionY);
+//     positionX = positionX + speed; 
+
+//     if (positionX > boardWidth) {
+//     speed = speed * -1;
+//     }
+
+//     if (positionX < 0) {
+//     speed = speed * -1;
+//     }
+
+// }
+
+
   function endGame() {
     // stop the interval timer
     clearInterval(interval);
@@ -165,5 +190,6 @@ function redrawWalker2(){
     // turn off event handlers
     $(document).off();
   }
-//  $("#board").offset(positionX,positionY);
+$("#board").offset(positionX,positionY);
 }
+endGame();
