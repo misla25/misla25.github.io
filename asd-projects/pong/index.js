@@ -26,19 +26,13 @@ function runProgram() {
     }
     if (object.x > BOARD_WIDTH || object.x < 0) {
       object.x = BOARD_WIDTH;
+      console.log(BOARD_WIDTH)
     }
     if (object.y > BOARD_HEIGHT || object.y < 0) {
       object.y = BOARD_HEIGHT;
     }
     scoreNum();
-    if (ball.x < 0) {
-      leftScore++;
-      $("#playerOneScoreBoard").text(leftScore);
-      startBall();
-    }
-    if (ball.x + ball.width > BOARD_WIDTH) {
-      rightScore++;
-      $("#playerTwoScoreBoard").text(rightScore);
+    if (ball.x < 0 || ball.x + ball.width > BOARD_WIDTH) {
       startBall();
     }
   }
@@ -69,8 +63,9 @@ function runProgram() {
     repositionGameItem(ball);
     repositionGameItem(leftPaddle);
     repositionGameItem(rightPaddle);
+    check();
   }
-  startBall();
+
 
   function repositionGameItem(object){
     object.x += object.speedX; // update the position of the box along the x-axis
@@ -84,7 +79,7 @@ function runProgram() {
     $("#rightPaddle").css("right", rightPaddle.x); //
     $("#ball").css("top", ball.y);
     $("#ball").css("left", ball.x);
-  }
+   }
 
   //UP AND DOWN ARROWS
   var KEY = {
@@ -158,17 +153,25 @@ function runProgram() {
   var playerOneScoreBoard = GameItem("#playerOneScoreBoard");
   var playerTwoScoreBoard = GameItem("#playerTwoScoreBoard");
 
+  startBall();
   //SCORING
 function check(){
   if (doCollide(ball, leftPaddle)) {
     // bounce ball off paddle Left
     ball.speedX = -ball.speedX;
+    leftScore++;
+    $("#playerOneScoreBoard").text(leftScore);
+    startBall();
    }
 
    if(doCollide(ball,rightPaddle)){
     ball.speedX = -ball.speedX;
+    rightScore++;
+      $("#playerTwoScoreBoard").text(rightScore);
+      startBall();
    }
-  }
+}
+
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
@@ -204,3 +207,4 @@ function moveObject(object) {
   }
 
 }
+endGame();
