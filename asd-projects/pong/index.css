@@ -73,6 +73,8 @@ body {
   top: 390px;
   left: 228px;
   text-align: center;
+  font-family: cursive; 
+  font-size: x-large;
 }
 #playerTwoScoreBoard{
   width: 80px;
@@ -83,6 +85,8 @@ body {
   left: 1136px;
   top: 400px; 
   text-align: center;
+  font-size: x-large;
+  font-family: fantasy;
 }
 
 #leftPaddle{
