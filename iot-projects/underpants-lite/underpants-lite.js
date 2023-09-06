@@ -30,7 +30,28 @@ var _ = {};
 * _.typeOf("javascript") -> "string"
 * _.typeOf([1,2,3]) -> "array"
 */
+_.typeOf = function (arr, str){
+    const res = [];
+    for(var i = 0; i < arr.length;i++){
+    res.push(str(arr[i], i, arr));
+    }
+    return res
+}
 
+// _.typeOf = function (arr, num){
+//     const res = [];
+//     for(var i = 0; i < arr.length; i++){
+//         res.push(num(arr[i], i, arr));
+//     }
+//     return res;
+// }
+
+// _.typeOf = function typeOf(arr, arr){
+//     const res = [];
+//     for(var i = 0; i < arr.length; i++){
+//         res.push()
+//     }
+// }
 
 /** _.first
 * Arguments:
