@@ -24,21 +24,31 @@ var _ = {};
 *          - "number"
 *          - "boolean"
 *          - "null"
-*          - "function"
+*          - "function" 
 * Examples:
 * _.typeOf(134) -> "number"
 * _.typeOf("javascript") -> "string"
 * _.typeOf([1,2,3]) -> "array"
 */
-_.typeOf = function (arr, str){
-    const res = [];
-    for(var i = 0; i < arr.length;i++){
-    res.push(str(arr[i], i, arr));
-    }
-    return res
+_.typeOf = function (value){
+    // return _.typeOf("a") = "string";
+   if(value === "string"){
+    typeof "string";
+   }
+   if(value === "number"){
+    typeof 43;
+   }
+   if(value === "boolean"){
+    typeof true;
+   }
+   if(value === undefined){
+    typeof x;
+   }
+   else{
+    null;
+   }
 }
-
-
+_.typeOf("javascript");
 // _.typeOf = function (arr, num){
 //     const res = [];
 //     for(var i = 0; i < arr.length; i++){
