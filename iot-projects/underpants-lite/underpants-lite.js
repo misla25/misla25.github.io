@@ -38,6 +38,7 @@ _.typeOf = function (arr, str){
     return res
 }
 
+
 // _.typeOf = function (arr, num){
 //     const res = [];
 //     for(var i = 0; i < arr.length; i++){
