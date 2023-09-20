@@ -5,13 +5,16 @@ const port = 7777;
 // example http server creation
 http.createServer(function(req,res){
     //handle response
-    //request("https://github.com/misla25",request());
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(body.data);
 }).listen(port);
-// function(req,res){
-//     request("https://github.com/misla25");
-// }
+
 request({url:"https://github.com/misla25"}, function(err, resp, body) {
-    if (!err && resp.statusCode === 200) {
-      console.log(body.data);
+    if (!body || !resp || (err === null && response.statusCode !== 200)){
+        resp.end("bad URL\n");
+        return;
+        // error.toString()
+        // res.end();
     }
-});
+    res.writeHead(resp.statusCode, {'Content-Type': 'text/plain'});
+    });
