@@ -14,7 +14,7 @@ const port = 6969;
 http.createServer(function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
  // TODO 7: Get the start time for the race
-    let racers = ["Green Ambler", "Catalack", "Steel Runner", "G.I. Jogger"];
+    let racers = ["Hatsune Miku", "Catalack", "Steel Runner", "G.I. Jogger"];
     let d = new Date();
     let startTime = d.getTime();  
 
