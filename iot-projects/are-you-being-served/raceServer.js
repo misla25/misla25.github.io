@@ -56,9 +56,16 @@ http.createServer(function(req, res) {
 
 // TODO 8: create a common function to be called by all functions in the array passed to the async function
 function wrapper(callback){
-    setTimeout(function(){
-   var d = new Date();
-   callback(null, d.getTime()), Math.random()*1000})}
+//     setTimeout(function(){
+//    var d = new Date();
+//    callback(null, d.getTime()), Math.random()*1000})
+   var rand = Math.random();
+   for (var i = 0; i < 1000; i++){
+       for (var j = 0; j <  rand * 1000000; j++){
+           // do some random math
+           rand * j; 
+       }
+   }callback(null, d.getTime()), Math.random()*1000}
 
 // sortTogether takes in an array of racer names and an array of times that the racers finished the race.
 // It returns a new array of names, with the list or racers sorted by the time that they finished.
