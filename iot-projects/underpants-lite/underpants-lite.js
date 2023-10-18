@@ -81,7 +81,19 @@ _.typeOf("javascript");
 *   _.first(["a", "b", "c"], 1) -> "a"
 *   _.first(["a", "b", "c"], 2) -> ["a", "b"]
 */
+_.first= function (array,number){
+    if(array != Array.isArray(array)){
+        return false;
+    }
+    if(number === NaN){
+        return array[0];
+    }
+    if(number < 0){
 
+    }
+    if(number > array.length){
+        return array[0];
+    }}
 
 /** _.last
 * Arguments:
