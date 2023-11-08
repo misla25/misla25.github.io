@@ -112,7 +112,20 @@ _.first= function (array,number){
 *   _.last(["a", "b", "c"], 1) -> "c"
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
-
+_.last = function(array, number){
+    if(array != Array.isArray){
+        return [];
+    }
+    if(number == NaN){
+        return array[0]; //CHANGE!!!
+    }
+    if(number < 0 || number != array.length /** THIS MIGHT BE WRONG */ || number > array.length){
+        return array[0]; //MIGHT CHANGE
+    }
+else{
+    return array.length; //MIGHT CHANGE
+}
+}
 
 /** _.indexOf
 * Arguments:
@@ -129,7 +142,9 @@ _.first= function (array,number){
 *   _.indexOf(["a","b","c"], "c") -> 2
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
+_.indexOf = function(array,value){
 
+}
 
 /** _.contains
 * Arguments:
