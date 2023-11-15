@@ -17,18 +17,27 @@ let startTime = d.getTime();
     }
 
     // TODO 12: Make the whole thing parallel
-    async.series(
+    async.parallel(
         // TODO 9: Supply an array of functions
        [
-
+        wrapper(callback),
+        wrapper(callback),
+        wrapper(callback),
+        wrapper(callback)
         ],
+
         function (error, results) {
             // TODO 10: add a callback function to the end of the async call to tally the results 
             res.write("Results:\n");
             var victoryOrder = sortTogether(racers, results);
             for(var i = 0; i < victoryOrder.length; i++){
-                
+                console.log("Green Ambler\n", "Catalack\n", "Steel Runner\n", "G.I. Jogger\n");
             }
+            var d = {
+                endTime: d.getTime(),
+                startTime: d.getTime()
+            }
+            res.end();
         }
     );
     
