@@ -1,20 +1,22 @@
 const http = require("http");
 const async = require("async");
 
-const port = 8686;
+const port = 6969;
+
+    // TODO 7: Get the start time for the race
+    // let d = new Date();
+    // let startTime = d.getTime();
+    // var Date = {
+    //     d: new Date(),
+    //     startTime: d.getTime()
+    // }
 
 http.createServer(function(req, res) {
     res.writeHead(200, {'Content-Type': 'text/plain'});
-    
-    let racers = ["Green Ambler", "Catalack", "Steel Runner", "G.I. Jogger"];
-
-    // TODO 7: Get the start time for the race
+ // TODO 7: Get the start time for the race
+    let racers = ["Hatsune Miku", "Catalack", "Steel Runner", "G.I. Jogger"];
     let d = new Date();
-let startTime = d.getTime();
-    var Date = {
-        d: new Date(),
-        startTime: d.getTime()
-    }
+    let startTime = d.getTime();  
 
     // TODO 12: Make the whole thing parallel
     async.parallel(
@@ -28,7 +30,7 @@ let startTime = d.getTime();
 
         function (error, results) {
             // TODO 10: add a callback function to the end of the async call to tally the results 
-            res.write("Results:\n");
+            res.write("Results:" +"\n");
             var victoryOrder = sortTogether(racers, results);
             for(var i = 0; i < victoryOrder.length; i++){
                 console.log("Green Ambler\n", "Catalack\n", "Steel Runner\n", "G.I. Jogger\n");
@@ -39,18 +41,24 @@ let startTime = d.getTime();
             }
             res.end();
         }
+
     );
-    
+    console.log("server is running");
+
 }).listen(port);
 
 // TODO 8: create a common function to be called by all functions in the array passed to the async function
 function wrapper(callback){
-    setTimeout();
-    var d = {}
-        
-    Math.random()*1000
-    callback(null, d.getTime());
-}
+//     setTimeout(function(){
+//    var d = new Date();
+//    callback(null, d.getTime()), Math.random()*1000})
+   var rand = Math.random();
+   for (var i = 0; i < 1000; i++){
+       for (var j = 0; j <  rand * 1000000; j++){
+           // do some random math
+           rand * j; 
+       }
+   }callback(null, d.getTime()), Math.random()*1000}
 
 // sortTogether takes in an array of racer names and an array of times that the racers finished the race.
 // It returns a new array of names, with the list or racers sorted by the time that they finished.
