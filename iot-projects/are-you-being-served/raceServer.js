@@ -20,33 +20,26 @@ http.createServer(function(req, res) {
 
     // TODO 12: Make the whole thing parallel
     async.parallel(
-        // TODO 9: Supply an array of functions*****
-       [function (callback){
-        wrapper(callback)},
-       
-        function(callback)
-        {wrapper(callback)},
-        
-        function(callback){
-        wrapper(callback)},
-        
-        function(callback)
-        {wrapper(callback)}],
+        // TODO 9: Supply an array of functions
+       [
+        wrapper(callback),
+        wrapper(callback),
+        wrapper(callback),
+        wrapper(callback)
+        ],
 
         function (error, results) {
             // TODO 10: add a callback function to the end of the async call to tally the results 
             res.write("Results:" +"\n");
             var victoryOrder = sortTogether(racers, results);
             for(var i = 0; i < victoryOrder.length; i++){
-                //var racerName = ["Hatsune Miku\n", "Princess Turdina\n"];
-                res.write(victoryOrder[i] + "\n");
+                console.log("Green Ambler\n", "Catalack\n", "Steel Runner\n", "G.I. Jogger\n");
             }
-            let d = new Date();
-            var endTime = d.getTime();
-            var duration = endTime - startTime;
-           // console.log(duration);
-           res.write(duration + "\n");
-            res.end(); 
+            var d = {
+                endTime: d.getTime(),
+                startTime: d.getTime()
+            }
+            res.end();
         }
 
     );

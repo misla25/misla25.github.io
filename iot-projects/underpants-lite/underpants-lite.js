@@ -32,37 +32,14 @@ var _ = {};
 */
 _.typeOf = function (value){
     // return _.typeOf("a") = "string";
-   if(value === "string"){
-    typeof "string";
+   if(Array.isArray(value) === true){
+    return "array";
    }
-   if(value === "number"){
-    typeof 43;
+   if(value === null){
+    return "null";
    }
-   if(value === "boolean"){
-    typeof true;
-   }
-   if(value === undefined){
-    typeof x;
-   }
-   else{
-    null;
-   }
+   return typeof value;
 }
-_.typeOf("javascript");
-// _.typeOf = function (arr, num){
-//     const res = [];
-//     for(var i = 0; i < arr.length; i++){
-//         res.push(num(arr[i], i, arr));
-//     }
-//     return res;
-// }
-
-// _.typeOf = function typeOf(arr, arr){
-//     const res = [];
-//     for(var i = 0; i < arr.length; i++){
-//         res.push()
-//     }
-// }
 
 /** _.first
 * Arguments:
@@ -83,17 +60,26 @@ _.typeOf("javascript");
 */
 _.first= function (array,number){
     if(array != Array.isArray(array)){
-        return false;
+        return [];
+    }
+    if(number < 0){
+        return [];
     }
     if(number === NaN){
         return array[0];
     }
-    if(number < 0){
-
-    }
-    if(number > array.length){
+    if(typeof number !== "number"){
         return array[0];
-    }}
+    }
+    
+    for(var i = 0; i < array.length; i++){ 
+     {
+       
+    }
+    }
+
+
+}
 
 /** _.last
 * Arguments:
@@ -112,7 +98,20 @@ _.first= function (array,number){
 *   _.last(["a", "b", "c"], 1) -> "c"
 *   _.last(["a", "b", "c"], 2) -> ["b", "c"]
 */
-
+_.last = function(array, number){
+    if(array != Array.isArray){
+        return [];
+    }
+    if(number == NaN){
+        return array[0]; //CHANGE!!!
+    }
+    if(number < 0 || number != array.length /** THIS MIGHT BE WRONG */ || number > array.length){
+        return array[0]; //MIGHT CHANGE
+    }
+else{
+    return array.length; //MIGHT CHANGE
+}
+}
 
 /** _.indexOf
 * Arguments:
@@ -129,7 +128,9 @@ _.first= function (array,number){
 *   _.indexOf(["a","b","c"], "c") -> 2
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
+_.indexOf = function(array,value){
 
+}
 
 /** _.contains
 * Arguments:
@@ -235,7 +236,9 @@ _.first= function (array,number){
 *   }); -> [[2,4],[1,3,5]]
 }
 */
+_.partition = function(array,func){
 
+}
 
 /** _.every
 * Arguments:
