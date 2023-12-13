@@ -19,14 +19,16 @@ module.exports = function() {
 					{'<>': 'p', 'html': '${value}'}
 				]}
 			]};
-			var html = json2html.transform(result,transform);
+			var html = json2html.transform(req.result,transform);
 			res.send(html);
 		}
 		else{	
-			next();
 			res.send(req.result);
 		}
 
-	};
+	}
+	else{
+		next();
+	}
 };
 };
