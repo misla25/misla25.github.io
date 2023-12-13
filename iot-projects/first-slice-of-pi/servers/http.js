@@ -1,13 +1,16 @@
-const express = require('express'),
-	cors = require('cors');
+require('./../middleware/coverter');
+var bodyParser = require('body-parser');
+require(bodyParser.json());
 	var sensorRoutes = require('./../routes/sensors');
 var actuatorRoutes = require('./../routes/actuators');
-const express = require('express'),
-	cors = require('cors');
+
 
 var app = express();
 
-module.exports = app;
+app.use(bodyParser.json());
+
+const express = require('express'),
+	cors = require('cors');
 
 app.use(cors());
 
@@ -22,6 +25,7 @@ app.get('/pi',function(req,res){
 	res.send("some response for accessing the gateway");
 	});
 
-
+	app.use(converter());
+	module.exports = app;
 // I have looked through all files
 
