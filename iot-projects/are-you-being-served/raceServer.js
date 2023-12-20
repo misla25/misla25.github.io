@@ -33,13 +33,14 @@ http.createServer(function(req, res) {
             res.write("Results:" +"\n");
             var victoryOrder = sortTogether(racers, results);
             for(var i = 0; i < victoryOrder.length; i++){
-                console.log("Green Ambler\n", "Catalack\n", "Steel Runner\n", "G.I. Jogger\n");
+                res.write("Hatsune Miku\n", "Catalack\n", "Steel Runner\n", "G.I. Jogger\n");
             }
             var d = {
                 endTime: d.getTime(),
                 startTime: d.getTime()
             }
-            res.end();
+            var duration = endTime - startTime;
+            res.end(duration + "\n");
         }
 
     );

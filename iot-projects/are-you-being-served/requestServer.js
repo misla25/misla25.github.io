@@ -8,7 +8,7 @@ const port = 7777;
 http.createServer(function(req,res){
     //handle response
     var url = args[0] ? args[0] : "http://127.0.0.1:5503/portfolio.html";
-   request({url:"https://github.com/misla25"},requestServer(err, response, body));
+   request({url:url},requestServer(err, response, body));
 }).listen(port, () => {
     console.log("server is running");
 });

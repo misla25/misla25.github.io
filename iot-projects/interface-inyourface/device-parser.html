@@ -94,7 +94,7 @@
                         console.log(data);
                         ///not sure what data ibject returns 
                         //{temperature: {…}, humidity: {…}, pir: {…}}
-                        var html = '<li><a href="' + sensorsPath + "temp" + '">' + data["temp"].name + "</a></li>";
+                        var html = '<li><a href="' + sensorsPath + key + '">' + data[key].name + "</a></li>";
                     sensorsList += html;
                     }
                     $("#sensors-list").html(sensorsList);

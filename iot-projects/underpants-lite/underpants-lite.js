@@ -108,6 +108,9 @@ _.last = function(array, number){
     if(number < 0 || number != array.length /** THIS MIGHT BE WRONG */ || number > array.length){
         return array[0]; //MIGHT CHANGE
     }
+    for(var i = 0; i < array.length; i++){
+
+    }
 else{
     return array.length; //MIGHT CHANGE
 }
@@ -129,7 +132,9 @@ else{
 *   _.indexOf(["a","b","c"], "d") -> -1
 */
 _.indexOf = function(array,value){
-
+ if(){
+    
+ }
 }
 
 /** _.contains
