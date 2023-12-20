@@ -10,3 +10,14 @@ exports.start = function (params) {
 };
 
 // TODO 1: Complete the ledsPlugin!
+function connectHardware(){
+	const Gpio = require('onoff').Gpio;
+	sensor = new Gpio(model.gpio, 'in', 'both');
+	sensor.watch(function (err, value) {
+		if (err){} // handle error
+		else {}    // handle non-error signals
+	});
+
+	actuator1 = new Gpio(model.gpio, 'out');
+	actuator2 = new Gpio(model.gpio,'out');
+}

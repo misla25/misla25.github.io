@@ -22,10 +22,18 @@ http.createServer(function(req, res) {
     async.parallel(
         // TODO 9: Supply an array of functions
        [
-        wrapper(callback),
-        wrapper(callback),
-        wrapper(callback),
-        wrapper(callback)
+        function (callback){
+            wrapper(callback);
+        },
+       function (callback){
+            wrapper(callback);
+       },
+       function (callback){
+            wrapper(callback);
+       },
+        function (callback){
+            wrapper(callback)
+        }
         ],
 
         function (error, results) {
@@ -33,7 +41,7 @@ http.createServer(function(req, res) {
             res.write("Results:" +"\n");
             var victoryOrder = sortTogether(racers, results);
             for(var i = 0; i < victoryOrder.length; i++){
-                res.write("Hatsune Miku\n", "Catalack\n", "Steel Runner\n", "G.I. Jogger\n");
+                res.write(victoryOrder[i]+"\n");
             }
             var d = {
                 endTime: d.getTime(),
