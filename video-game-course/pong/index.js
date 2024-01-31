@@ -26,6 +26,7 @@
     paddlePlayer = createPaddle(),
     paddleCPU = createPaddle({ x: canvas.width - 20, y: canvas.height - 100 }),
     ball = draw.circle(20, '#CCC');
+    
 
   // set initial properties for the paddles 
   paddlePlayer.yVelocity = 0;
@@ -34,8 +35,8 @@
   // set initial properties for the ball
   ball.x = canvas.width / 2;
   ball.y = canvas.height / 2;
-  ball.xVelocity = 5;
-  ball.yVelocity = 5;
+  ball.xVelocity = 7;
+  ball.yVelocity = 7;
 
   // add the paddles and the ball to the view
   stage.addChild(paddlePlayer, paddleCPU, ball);
@@ -43,6 +44,7 @@
 
   document.addEventListener('keyup', onKeyUp);
   document.addEventListener('keydown', onKeyDown);
+  
 
   // when an Arrow key is pressed down, set the paddle in motion
   function onKeyDown(event) {
@@ -91,18 +93,51 @@
     }
 
     // TODO 1: bounce the ball off the top
-
+    if(ball.y < 0 || ball.y > canvas.height){
+     ball.yVelocity = -ball.yVelocity;
+    }
 
     // TODO 2: bounce the ball off the bottom
-
+    if(ball.x < 0 || ball.x > canvas.width){
+      ball.xVelocity = -ball.xVelocity;
+    }
 
     // TODO 3: bounce the ball off each of the paddles
+    //top of ball has to be greater than bottom of paddle
+
+    //BALL
+
+    ball.Top = ball.y - ball.radius;
+    ball.Bottom = ball.y + ball.radius;
+  
+    //paddle 
+
+    const paddleRight = paddle.x + paddle.width;
+    const paddleLeft = paddle.x;
 
 
+
+
+
+
+
+    const topOverlap = ball.y - ball.radius < paddlePlayer.y + paddlePlayer.height;
+    //bottom of ball has to below top of paddle
+    const bottomOverlap= ball.y + ball.radius > paddlePlayer.y;
+    //right of ball has to be the right of the left of the paddle 
+    const rightOverlap = ball.x + ball.radius < paddlePlayer.x + paddlePlayer.width;
+    //left of the ball has to be the left of the right of the paddle 
+    const leftOverlap = ball.x - ball.radius > paddlePlayer.x;
+    //CPU
+    const topOverlapCPU = ball.y - ball.radius < paddleCPU.y + paddleCPU.height;
+    const bottomOverlapCPU = ball.y + ball.radius > paddleCPU.y;
+    const rightOverlapCPU = ball.x + ball.radius < paddleCPU.x + paddleCPU.width;
+    const leftOverlapCPU = ball.x - ball.raidus > paddleCPU.x;
+  
   }
 
   // helper function that wraps the draw.rect function for easy paddle making
-  function createPaddle({ width = 20, height = 100, x = 0, y = 0, color = '#CCC' } = {}) {
+  function createPaddle({ width = 20, height = 100, x = 0, y = 0, color = 'grey' } = {}) {
     const paddle = draw.rect(width, height, color);
     paddle.x = x;
     paddle.y = y;
