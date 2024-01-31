@@ -107,33 +107,38 @@
 
     //BALL
 
-    ball.Top = ball.y - ball.radius;
-    ball.Bottom = ball.y + ball.radius;
+
   
     //paddle 
 
-    const paddleRight = paddle.x + paddle.width;
-    const paddleLeft = paddle.x;
+    // const paddleRight = paddle.x + paddle.width;
+    // const paddleLeft = paddle.x;
 
+function checkOverlap(ball,paddlePlayer){ 
+  ball.Top = ball.y - ball.radius;
+  ball.Bottom = ball.y + ball.radius;
+  ball.left = ball.x - ball.radius; 
+  ball.right = ball.x + ball.radius;
 
-
-
-
-
-
-    const topOverlap = ball.y - ball.radius < paddlePlayer.y + paddlePlayer.height;
+    const topOverlap = ball.Top < paddlePlayer.y + paddlePlayer.height;
     //bottom of ball has to below top of paddle
-    const bottomOverlap= ball.y + ball.radius > paddlePlayer.y;
+    const bottomOverlap= ball.Bottom > paddlePlayer.y;
     //right of ball has to be the right of the left of the paddle 
-    const rightOverlap = ball.x + ball.radius < paddlePlayer.x + paddlePlayer.width;
+    const rightOverlap = ball.right > paddlePlayer.x + paddlePlayer.width;
     //left of the ball has to be the left of the right of the paddle 
-    const leftOverlap = ball.x - ball.radius > paddlePlayer.x;
+    const leftOverlap = ball.left < paddlePlayer.x;
+
+    return topOverlap && bottomOverlap && rightOverlap && leftOverlap;
+}
+function checkOverlapCpu(ball, paddleCPU){ 
     //CPU
-    const topOverlapCPU = ball.y - ball.radius < paddleCPU.y + paddleCPU.height;
+    const topOverlapCPU = ball.Top < paddleCPU.y + paddleCPU.height;
     const bottomOverlapCPU = ball.y + ball.radius > paddleCPU.y;
-    const rightOverlapCPU = ball.x + ball.radius < paddleCPU.x + paddleCPU.width;
-    const leftOverlapCPU = ball.x - ball.raidus > paddleCPU.x;
-  
+    const rightOverlapCPU = ball.right > paddleCPU.x + paddleCPU.width;
+    const leftOverlapCPU = ball.x - ball.raidus < paddleCPU.x;
+   
+    return topOverlapCPU && bottomOverlapCPU && rightOverlapCPU && leftOverlapCPU;
+}
   }
 
   // helper function that wraps the draw.rect function for easy paddle making
