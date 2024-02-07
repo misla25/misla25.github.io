@@ -1,4 +1,5 @@
-(function(window, createjs, opspark, _) {
+
+(function (window, createjs, opspark, _) {
 
   // Variable declarations for libraries and the game engine
   const
@@ -24,13 +25,14 @@
   // Variable declarations for the paddles and the ball which are drawn using createJS (see bower_components/opspark-draw/draw.js)
   const
     paddlePlayer = createPaddle(),
-    paddleCPU = createPaddle({ x: canvas.width - 20, y: canvas.height - 100 }),
+    paddleCPU = createPaddle({ x: canvas.width - 50, y: canvas.height - 100 }),
     ball = draw.circle(20, '#CCC');
-    
+    const playerText = draw.textfield("score: 0", "24px Arial", "purple", "center", "middle", canvas.width/2,canvas.height/16);
+    let playerScore = 
 
   // set initial properties for the paddles 
-  paddlePlayer.yVelocity = 0;
-  paddleCPU.yVelocity = 6;
+  paddlePlayer.yVelocity = 7;
+  paddleCPU.yVelocity = 10;
 
   // set initial properties for the ball
   ball.x = canvas.width / 2;
@@ -39,32 +41,41 @@
   ball.yVelocity = 7;
 
   // add the paddles and the ball to the view
-  stage.addChild(paddlePlayer, paddleCPU, ball);
+  stage.addChild(paddlePlayer, paddleCPU, ball, playerText);
 
 
   document.addEventListener('keyup', onKeyUp);
   document.addEventListener('keydown', onKeyDown);
-  
+
+
+  var KEY = {
+    "DOWN": 40,
+    "UP": 38,
+    "W": 87,
+    "S": 83
+  }
 
   // when an Arrow key is pressed down, set the paddle in motion
+ 
   function onKeyDown(event) {
-    if (event.key === 'ArrowUp') {
+    if (event.which === KEY.W) { //'ArrowUp'
       paddlePlayer.yVelocity = -5;
-    } else if (event.key === 'ArrowDown') {
+    } else if (event.which === KEY.S) { //'ArrowDown'
       paddlePlayer.yVelocity = 5;
     }
   }
 
   // when either the Arrow Up or Arrow Down key are released, stop the paddle from moving
+
   function onKeyUp(event) {
-    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+    if (event.which === KEY.W || event.which === KEY.S) {
       paddlePlayer.yVelocity = 0;
     }
   }
 
   function update(event) {
-    const
-      boundsCPU = paddleCPU.getBounds(),
+
+    boundsCPU = paddleCPU.getBounds(),
       widthCPU = boundsCPU.width,
       heightCPU = boundsCPU.height,
       midCPU = heightCPU / 2,
@@ -93,56 +104,59 @@
     }
 
     // TODO 1: bounce the ball off the top
-    if(ball.y < 0 || ball.y > canvas.height){
-     ball.yVelocity = -ball.yVelocity;
+    if (ball.y < 0 || ball.y > canvas.height) {
+      ball.yVelocity = -ball.yVelocity;
+      createjs.Sound.play("wall");
     }
 
     // TODO 2: bounce the ball off the bottom
     if(ball.x < 0 || ball.x > canvas.width){
-      ball.xVelocity = -ball.xVelocity;
+      //ball.xVelocity = -ball.xVelocity;
+      ball.x = canvas.width/2;
+      ball.y = canvas.height/2;
+    } else if(ball.x > canvas.width){
+      ball.x = canvas.width/2;
+      ball.y = canvas.height/2;
+      playerScore++;
+     playerText.text = "Score : " + playerScore; 
     }
 
     // TODO 3: bounce the ball off each of the paddles
     //top of ball has to be greater than bottom of paddle
+    detectPaddleCollision(paddleCPU);
+   detectPaddleCollision(paddlePlayer);
+    
+   function detectPaddleCollision(paddle) {
+      ball.top = ball.y - ball.radius;
+      ball.bottom = ball.y + ball.radius;
 
-    //BALL
+      ball.left = ball.x - ball.radius;
+      ball.right = ball.x + ball.radius;
 
+      paddle.top = paddle.y;
+      paddle.bottom = paddle.y + paddle.height;
 
-  
-    //paddle 
+      paddle.left = paddle.x;
+      paddle.right = paddle.x + paddle.width;
 
-    // const paddleRight = paddle.x + paddle.width;
-    // const paddleLeft = paddle.x;
+      //checks
+      const topOverlap = ball.top < paddle.bottom;
+      //bottom of ball has to below top of paddle
+      const bottomOverlap = ball.bottom > paddle.top;
+      //right of ball has to be the right of the left of the paddle 
+      const rightOverlap = ball.right > paddle.left;
+      //left of the ball has to be the left of the right of the paddle 
+      const leftOverlap = ball.left < paddle.right;
 
-function checkOverlap(ball,paddlePlayer){ 
-  ball.Top = ball.y - ball.radius;
-  ball.Bottom = ball.y + ball.radius;
-  ball.left = ball.x - ball.radius; 
-  ball.right = ball.x + ball.radius;
-
-    const topOverlap = ball.Top < paddlePlayer.y + paddlePlayer.height;
-    //bottom of ball has to below top of paddle
-    const bottomOverlap= ball.Bottom > paddlePlayer.y;
-    //right of ball has to be the right of the left of the paddle 
-    const rightOverlap = ball.right > paddlePlayer.x + paddlePlayer.width;
-    //left of the ball has to be the left of the right of the paddle 
-    const leftOverlap = ball.left < paddlePlayer.x;
-
-    return topOverlap && bottomOverlap && rightOverlap && leftOverlap;
-}
-function checkOverlapCpu(ball, paddleCPU){ 
-    //CPU
-    const topOverlapCPU = ball.Top < paddleCPU.y + paddleCPU.height;
-    const bottomOverlapCPU = ball.y + ball.radius > paddleCPU.y;
-    const rightOverlapCPU = ball.right > paddleCPU.x + paddleCPU.width;
-    const leftOverlapCPU = ball.x - ball.raidus < paddleCPU.x;
-   
-    return topOverlapCPU && bottomOverlapCPU && rightOverlapCPU && leftOverlapCPU;
-}
+      if (topOverlap && bottomOverlap && rightOverlap && leftOverlap) {
+        return ball.xVelocity *= -1;
+        createjs.Sound.play("hit");
+      }
+    
+    }
   }
-
   // helper function that wraps the draw.rect function for easy paddle making
-  function createPaddle({ width = 20, height = 100, x = 0, y = 0, color = 'grey' } = {}) {
+  function createPaddle({ width = 20, height = 100, x = 10, y = 10, color = 'purple' } = {}) {
     const paddle = draw.rect(width, height, color);
     paddle.x = x;
     paddle.y = y;
