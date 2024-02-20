@@ -20,10 +20,6 @@ function runProgram() {
   let interval = setInterval(newFrame, FRAMES_PER_SECOND_INTERVAL);
   // execute newFrame every 0.0166 seconds (60 Frames per second)
   function wallCollision(object) {
-    if (object.x < 0 || object.x + object.width > BOARD_WIDTH) {
-      // Collision with left or right wall
-      object.speedX = -object.speedX;
-    }
     if (object.x > BOARD_WIDTH || object.x < 0) {
       object.x = BOARD_WIDTH;
       console.log(BOARD_WIDTH)
@@ -60,17 +56,18 @@ function runProgram() {
     wallCollision(leftPaddle);
     wallCollision(rightPaddle);
     wallCollision(ball);
-    repositionGameItem(ball);
-    repositionGameItem(leftPaddle);
-    repositionGameItem(rightPaddle);
+    // repositionGameItem(ball);
+    // repositionGameItem(leftPaddle);
+    // repositionGameItem(rightPaddle);
+    redrawGameItem()
     check();
   }
 
 
-  function repositionGameItem(object){
-    object.x += object.speedX; // update the position of the box along the x-axis
-    object.y += object.speedY;  // draws the box in the new location, positionX pixels away from the "left"
-  }
+  // function repositionGameItem(object){
+  //   object.x += object.speedX; // update the position of the box along the x-axis
+  //   object.y += object.speedY;  // draws the box in the new location, positionX pixels away from the "left"
+  // }
   
   function redrawGameItem() {
     $("#leftPaddle").css("top", leftPaddle.y); // draw the box in the new location, positionX pixels away from the "left"
@@ -187,7 +184,7 @@ function moveObject(object) {
     object.y += object.speedY;
     object.x += object.speedX;
     $(object.id).css("left", object.x);
-    $(object.id).css("top", object.y);  
+    $(object.id).css("top", object.y);   
   }
   function startBall(){
     var randomNum = (Math.random() * 3 + 2) * (Math.random() > 0.5 ? -1 : 1);
