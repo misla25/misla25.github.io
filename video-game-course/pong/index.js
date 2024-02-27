@@ -28,7 +28,7 @@
     paddleCPU = createPaddle({ x: canvas.width - 50, y: canvas.height - 100 }),
     ball = draw.circle(20, '#CCC');
     const playerText = draw.textfield("score: 0", "24px Arial", "purple", "center", "middle", canvas.width/2,canvas.height/16);
-   // let playerScore = 
+   let playerScore = paddleCPU;
 
   // set initial properties for the paddles 
   paddlePlayer.yVelocity = 7;
