@@ -61,44 +61,47 @@
   cyclops.addChild(circle3, circle4);
 
 //blinking eye?????
-var canvas1 = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-var x = canvas.width / 2, y = canvas.height / 2;
-var ballRadius = 10, dx = 2, dy = -2;
-var blinkDuration = 60; // Duration in milliseconds
-var endBlink = 0;
+// var canvas1 = document.getElementById("canvas");
+// var x = canvas.width / 2, y = canvas.height / 2;
+// var ballRadius = 10, dx = 2, dy = -2;
+// var blinkDuration = 60; // Duration in milliseconds
+// var endBlink = 0;
 
 // function drawBall() {
-//   ctx.beginPath();
-//   ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-//   ctx.fillStyle = "#0095DD";
-//   ctx.fill();
-//   ctx.closePath();
+//   cyclops.beginPath();
+//    cyclops.closePath();
 // }
 
-function draw(timeStamp) {
-  if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
-    endBlink = timeStamp + blinkDuration; // Hit a wall
-    dx = -dx;
-  }
-  if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
-    endBlink = timeStamp + blinkDuration;
-    dy = -dy;
-  }
+// function draw(timeStamp) {
+//   if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+//     endBlink = timeStamp + blinkDuration; // Hit a wall
+//     dx = -dx;
+//   }
+//   if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+//     endBlink = timeStamp + blinkDuration;
+//     dy = -dy;
+//   }
+//   drawBall();
 
-  // If endBlink > timeStamp, change the color
-  ctx.fillStyle = (endBlink > timeStamp ? "#338" : "#114");
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  drawBall();
-
-  x += dx;
-  y += dy;
+//   x += dx;
+//   y += dy;
   
-  requestAnimationFrame(draw);
+//   requestAnimationFrame(draw);
+// }
+// requestAnimationFrame(draw);
+function makeEyeBlink(){
+var times = 40;
+if(times > 0){
+  var pleaseWork = setInterval(function(){
+    times--;
+    console.log(times);
+    if(times === 0){
+      clearInterval(x);
+      blink();
+    };
+  }, 1000)
 }
-
-requestAnimationFrame(draw);
-
+}
 
 
 ///
