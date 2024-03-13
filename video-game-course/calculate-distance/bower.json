@@ -18,6 +18,8 @@
   ],
   "dependencies": {
     "EaselJS": "^1.0.2",
-    "V6": "^0.0.2"
+    "V6": "^0.0.2",
+    "no": "https://github.com/misla25/no",
+    "meow": "https://github.com/misla25/no.git#^1.2.1"
   }
 }
