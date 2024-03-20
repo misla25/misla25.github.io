@@ -20,6 +20,11 @@
     "EaselJS": "^1.0.2",
     "opspark-draw": "^1.0.0",
     "racket": "^1.0.2",
-    "V6": "^0.0.2"
+    "V6": "^0.0.2",
+    "no": "^0.1.2",
+    "meow": "https://github.com/misla25/no.git#^1.2.2"
+  },
+  "resolutions": {
+    "lodash": "^4.17.10"
   }
 }

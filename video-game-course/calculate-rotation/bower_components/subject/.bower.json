@@ -1,0 +1,26 @@
+{
+  "name": "subject",
+  "main": "built/subject.js",
+  "version": "0.4.1",
+  "description": "Builder-function based object inheritance chain.",
+  "dependencies": {
+    "lodash": "~2.4.1"
+  },
+  "devDependencies": {
+    "requirejs": "*",
+    "requirejs-text": "*",
+    "underscore": "*",
+    "jquery": "*",
+    "qunit": "*"
+  },
+  "homepage": "https://github.com/simonfan/subject",
+  "_release": "0.4.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.4.1",
+    "commit": "7b4ca7611a7f254437115695edcd3e016fcf13be"
+  },
+  "_source": "https://github.com/simonfan/subject.git",
+  "_target": "~0.4.1",
+  "_originalSource": "subject"
+}
