@@ -1,5 +1,5 @@
 // TODO 5.b: Replace *my-game-lib* with the name of your game lib
-(function(window, draw, *my-game-lib*) {
+(function(window, draw, no) {
   
   function centerOnStage(asset, canvas) {
     if(asset.type === 'circular' || asset.radius) {
@@ -47,4 +47,4 @@
     centerOnStage,
   };
 // TODO 5.a: Replace *my-game-lib* with the name of your game lib
-}(window, window.opspark.draw, window.*my-game-lib*));
+}(window, window.opspark.draw, window.no));

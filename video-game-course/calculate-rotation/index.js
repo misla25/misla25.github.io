@@ -1,5 +1,5 @@
 // TODO 4: add a param for your game lib last //
-(function(window, createjs, opspark, meow) {
+(function(window, createjs, opspark, no) {
   console.log('index.js initialized!');
 
   const
@@ -34,10 +34,10 @@
      * method takes two points. What do you need to do to translate
      * these values such that they're packed into a point?
      */
-    const mouse = {};
-    mouse.x =  stage.mouseX;
-    mouse.y = stage.mouseY;
-  const degrees = meow.numz.getAngleDegrees(ship,mouse);
+  const mouse = {};
+  mouse.x =  stage.mouseX;
+  mouse.y = stage.mouseY;
+  const degrees = no.numz.getAngleDegrees(ship,mouse);
     
     // TODO 8: Set the ship's rotation property to the degrees //
     
@@ -56,4 +56,4 @@
     .activateTick();
 
 // TODO 3: pass your game lib last with, window.my-game-lib //
-}(window, window.createjs, window.opspark, window.meow));
+}(window, window.createjs, window.opspark, window.no));
