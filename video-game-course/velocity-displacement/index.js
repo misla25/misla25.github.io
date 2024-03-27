@@ -8,7 +8,6 @@
     space = opspark.space;
 
   const ship = assets.makeShip('#4286f4');
-
   /*
    * The space module expects each body to implement an
    * update() method. On each tick, the space module loops
@@ -22,6 +21,7 @@
    * acting against it on both axis, x and y.
    */
   ship.update = function() {
+    //code that updates the ship's velocity
     /*
      * TODO 7: Use your game lib's phyz.updateVelocity() 
      * method to update the ship's velocity. The 
@@ -34,12 +34,15 @@
      * is available to you in this scope as, "this".
      * 2. What are the x and y forces acting on our ship?
      */
-    
-    
-    
+  const forceOnX = this.propulsion;
+  const forceOnY = this.propulsion;
+    no.phyz.updateVelocity(this, this.propulsion, this.propulsion);
+
     // also check if the ship needs to rebound off a boundary //
-    reboundCircularAssetInArea(this, canvas);
-  };
+  reboundCircularAssetInArea(this, canvas);
+  
+  }
+ 
 
   assets.centerOnStage(ship, canvas);
   stage.addChild(ship);
@@ -92,9 +95,14 @@
       // we've struck the right side of the area //
       body.x = right - radius;
       body.velocityX *= -1;
-    } else if ( /* TODO 9: Check if body's hit left side */ false ) {
+    } else if ( /* TODO 9: Check if body's hit left side*/  body.x - radius > left) {
       // we've struck the left side of the area //
+      //body.x = left + radius;
+      //body.velocityX *= -1;
       // TODO 10: Code the reaction to hitting the left side
+      /*
+      if(){}
+      */
       
     }
 
@@ -106,7 +114,9 @@
     } else if ( /* TODO 11: Check if body's hit bottom */ false ) {
       // we've struck the bottom of the area //
       // TODO 12: Code the reaction to hitting the bottom
-      
+      /*
+      if(){}
+       */
     }
   }
   
