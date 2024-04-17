@@ -22,6 +22,7 @@
          * update the position of the body
          */
        no.phyz.updatePosition(body);
+      
       });
     
     }
