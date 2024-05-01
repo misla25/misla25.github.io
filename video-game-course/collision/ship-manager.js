@@ -1,9 +1,11 @@
-(function(window, opspark, _) {
+(function (window, opspark, _) {
   // create a namespace for the ship manager //
-  _.set(opspark, 'shipManager',
+  _.set(
+    opspark,
+    "shipManager",
     /**
      * Creates and returns the ship manager.
-     * @param {Object} assets: The factory API for creating assets, 
+     * @param {Object} assets: The factory API for creating assets,
      * must expose makeShip().
      * @param {Object} controls: The system wide instance of controlFreak.
      * @param {Object} messenger: The system wide event dispatcher.
@@ -11,21 +13,23 @@
      * the ships propulsion and left and right rotation. The key map
      * can also be set using setKeyMap().
      */
-    function(assets, controls, messenger, keyMap) {
+    function (assets, controls, messenger, keyMap) {
       // default key map //
       keyMap = keyMap || {
         UP: controls.KEYS.UP,
         LEFT: controls.KEYS.LEFT,
         RIGHT: controls.KEYS.RIGHT,
-      }
-        
+        W: "w",
+      };
+
+      console.log(keyMap);
       let ship;
 
       return {
-        spawn(color = '#4286f4') {
-          if(ship) throw new Error('Ship is already spawned!');
+        spawn(color = "#4286f4") {
+          if (ship) throw new Error("Ship is already spawned!");
           ship = assets.makeShip(color);
-          messenger.dispatch({type: 'SPAWN', bodies: [ship]});
+          messenger.dispatch({ type: "SPAWN", bodies: [ship] });
           return this;
         },
         setKeyMap(map) {
@@ -33,6 +37,7 @@
           return this;
         },
         update(event) {
+          console.log({ keyMap });
           // left and right arrows cannot be pressed at the same time //
           if (controls.isActive(keyMap.LEFT)) {
             ship.rotationalVelocity = -5;
@@ -43,12 +48,13 @@
           }
 
           // up arrow can be pressed in combo with other keys //
-          if (controls.isActive(keyMap.UP)) {
+          if (controls.isActive(keyMap.UP) || controls.isActive(keyMap.W)) {
             ship.propulsion = 0.1;
           } else {
             ship.propulsion = 0;
           }
         },
       };
-    });
-}(window, window.opspark, window._));
+    }
+  );
+})(window, window.opspark, window._);

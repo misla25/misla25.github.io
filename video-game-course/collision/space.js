@@ -51,18 +51,29 @@
             //chan ge!!!!!!!
             var distanceX = bodyA.x - bodyB.x;
             var distanceY = bodyA.y - bodyB.y;
-            var distance = Math.sqrt(distanceX ** 2 + distanceY ** 2);
-            var minimunDistance = bodyA.radius + bodyB.radius;
+            var distance = Math.sqrt(
+              distanceX * distanceX + distanceY * distanceY
+            );
+            var minimunDistance = bodyB.radius + bodyA.radius;
 
             // TODO 2: Do collision check: how do we know if bodies are colliding?
-            if (bodyA.distanceX > bodyB.distanceX) {
-            console.log('hit!');
+            if (distance < minimunDistance) {
+              console.log("hit!");
               // TODO 3: Calculate springToX and springToY
-              Math.atan2(distanceX, distanceY);
-              Math.cos()
+              var angle = Math.atan2(distanceY, distanceX);
+              var springToX = Math.cos(angle) * minimunDistance + bodyA.x;
+              var springToY = Math.sin(angle) * minimunDistance + bodyA.y;
               // TODO 4: Calculate acceleration to spring-to point, factor in dampeningForce
+              var accelerationOnX = ( bodyB.x - springToX ) * dampeningForce;
+              var accelerationOnY = (bodyB.y- springToY ) * dampeningForce;
+
               // TODO 5: Apply acceleration to bodyB
+              bodyB.velocityX += accelerationOnX;
+              bodyB.velocityY += accelerationOnY;
+              // bodyB = accelerationOnX + bodyB.velocityX + accelerationOnY + bodyB.velocityY;
               // TODO 6: Apply inverse acceleration to bodyA
+              bodyA.velocityX -= accelerationOnX;
+              bodyA.velocityY -= accelerationOnY;
             }
           }
         }
