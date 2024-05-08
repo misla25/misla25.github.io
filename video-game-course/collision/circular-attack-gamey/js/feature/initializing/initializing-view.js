@@ -30,8 +30,15 @@
      * Use render() to config and position components.
      */
     function render() {
-      canvas.style.backgroundColor = '#BBB';
-
+      canvas.style.backgroundImage = "url('https://i.pinimg.com/736x/4e/71/b4/4e71b452dba957ccf6dead3e6bc7f925.jpg');"
+      canvas.style.backgroundPosition = "center";
+//       var context = canvas.getContext('2d');
+// context.fillRect(0,0,50,50);
+// canvas.setAttribute('width', '300'); // clears the canvas
+// context.fillRect(0,100,50,50);
+// canvas.width = canvas.width; // clears the canvas
+// context.fillRect(100,0,50,50); // only this square remains 
+canvas.style.backgroundRepeat = "no-repeat"; 
       textfield.alpha = 0;
       textfield.x = canvas.width / 2;
       textfield.y = 10;

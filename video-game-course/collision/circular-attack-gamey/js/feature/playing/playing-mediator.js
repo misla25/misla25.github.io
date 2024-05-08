@@ -33,8 +33,8 @@
           fx.makePlayerEmitter(), 
           level)
           .setKeyMap({ UP: controls.KEYS.W, LEFT: controls.KEYS.A, RIGHT: controls.KEYS.D, FIRE: controls.KEYS.SHIFT_LEFT })
-          .spawn('#f44242'),
-          
+          .spawn("#FFF"),
+         //chage to  "url('https://i.pinimg.com/564x/7a/5e/b5/7a5eb5fd7da33d082b037284be5b3745.jpg')"
         orb = opspark.playa.orb(assets, fx, messenger)
           .spawn(25);
       

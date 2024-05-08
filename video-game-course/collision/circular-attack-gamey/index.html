@@ -13,6 +13,7 @@
         <link href="css/style.css" rel="stylesheet">
 
         <!-- all core CreateJS and 3rd party libraries are listed here -->
+        <script src="https://code.createjs.com/easeljs-0.8.0.min.js"></script>
         <script src="bower_components/lodash/dist/lodash.min.js"></script>
         <script src="bower_components/proton/build/proton-1.0.0.min.js"></script>
         <script src="bower_components/EaselJS/lib/easeljs.min.js"></script>
@@ -26,6 +27,9 @@
     <body>
         <div>
             <canvas id="canvas" width="500" height="500"></canvas>
+            <input type="button" value="PLAY" onclick="play()">
+            <audio id="audio" src="sound/hottogo.mp3"></audio>
+            <audio id="audio" autoplay loop  controls src="sound/hottogo.mp3"></audio>
         </div>
         
         <!-- our game or app javascript code list here -->
@@ -53,5 +57,6 @@
         <script src="js/feature/end/end-mediator.js"></script>
         <script src="js/feature/end/end-view.js"></script>
         <script src="index.js"></script>
+        
     </body>
 </html>

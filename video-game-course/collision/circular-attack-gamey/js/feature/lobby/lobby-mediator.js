@@ -26,7 +26,7 @@
       view,
       liquify() {
         return view.liquify();
-      },
+      }, 
       enter() {
         return new Promise(function(resolve, reject) {
           // see: https://createjs.com/docs/easeljs/classes/Stage.html#method_enableMouseOver 

@@ -2,7 +2,7 @@
   const
     button = opspark.factory.component.button,
     layout = opspark.factory.component.layout;
-  
+    
   // MENU //
   // create a namespace for the menu //
   _.set(opspark, 'factory.menu', 
@@ -17,7 +17,16 @@
       btnPlay = button('PLAY'),
       btnSettings = button('SETTINGS'),
       btnQuit = button('QUIT', '#d9534f', '#d43f3a', true);
-    
+      
+      //music!!
+      // let myAudio = document.querySelector('#audio')
+      // myAudio.play();
+      function play() {
+        var audio = document.getElementById("audio");
+        audio.play();
+      }
+
+
     function render() {
       asset.x = -width - 10;
       asset.y = 10;

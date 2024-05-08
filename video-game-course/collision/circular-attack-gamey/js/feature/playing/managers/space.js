@@ -50,7 +50,8 @@
           // compare all other bodies to bodyA, excluding bodyA: note j > -1 //
           hit: for (let j = i - 1; j > -1; j--) {
             const bodyB = active[j],
-              distanceAttributes = getDistanceAttributes(bodyA, bodyB),
+              distanceAttributes = getDistanceAttributes(bodyA, bodyB) ,
+              // comment this out so that the ships don't die when they collide
               hitResult = doRadiiHitTest(
                 distanceAttributes.distance,
                 bodyA,

@@ -51,11 +51,12 @@
         let
           score = 0,
           of = 0;
-//BACKGORUNF URL; https://i.pinimg.com/736x/4e/71/b4/4e71b452dba957ccf6dead3e6bc7f925.jpg
+
         const
           txtScore = draw.textfield('SCORE : 000', "19px Arial", '#666', 'left'),
           integrity = new createjs.Container(),
           background = draw.rect(104, 20, 'pink'),
+          //CHANGE
            integrityMeter = draw.rect(100, 16, ship.color || '#3333CC');
 
         draw.rect(102, 18, 'pink', null, null, 1, 1, background);

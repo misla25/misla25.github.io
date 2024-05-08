@@ -531,10 +531,10 @@
          * @param {Number} greenMax: The maximum green value, between 0 and 255.
          * @param {Number} blueMax: The maximum blue value, between 0 and 255.
          */
-        randomRadialProps: function (area, radiusMin, radiusMax, redMax, greenMax, blueMax) {
+        randomRadialProps: function (area, radiusMin, radiusMax, url) {
             return {
                 radius: randomIntBetween(radiusMin || 5, radiusMax || 20),
-                color: randomColor(redMax || 255, greenMax || 255, blueMax || 255),
+                url: "url('https://media.pitchfork.com/photos/64ff1676931354660ba71d8b/1:1/w_320,c_limit/Chappell-Roan-Princess.jpg')",
                 x: (area ? randomIntBetween(area.x || 0, area.width) : 0),
                 y: (area ? randomIntBetween(area.y || 0, area.height) : 0)
             };
