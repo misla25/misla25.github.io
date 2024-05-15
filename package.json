@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bower": "^1.8.14",
     "node-json2html": "^2.2.3"
   }
 }

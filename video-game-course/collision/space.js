@@ -46,6 +46,16 @@
           // compare all other bodies to bodyA, excluding bodyA: note j > -1 //
           hit: for (let j = i - 1; j > -1; j--) {
             const bodyB = active[j];
+            distanceAttributes = getDistanceAttributes(bodyA, bodyB),
+            hitResult = doRadiiHitTest(distanceAttributes.distance, bodyA,bodyB);
+            if(hitResult.isHit) {
+              if((bodyA.type === "projectile" && bodyB.type === "ship") || (bodyA.type === "ship" && bodyB.type === "projectile")){
+
+              }
+              else{
+                handleCollision(distanceAttributes, hitResult, phyz.lengthImpactProperties(bodyA, bodyB));
+              }
+            }
 
             // TODO 1: Calculate hit test components
             //chan ge!!!!!!!
