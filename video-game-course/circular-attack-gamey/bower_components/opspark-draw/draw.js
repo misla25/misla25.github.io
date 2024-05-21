@@ -179,6 +179,7 @@
          * @param {Object} dimensions: A map of dimensions to be used to calculate width, height, etc.
          * @return {Shape} The Shape passed as shape, with dimensions applied.
          */
+        //maybe!!!!!!!
         setDimensionsOn: function (shape, dimensions) {
             /*
              * If the shape already has dimensions, it means we're adding graphics to it, making it composite.
@@ -231,7 +232,6 @@
             // debug //
             // console.log(shape.width);
             // console.log(shape.height);
-            
             return shape;
         },
         
@@ -590,8 +590,8 @@
          */
         fps: function (color = '#FFF') {
             const 
-                textfield = new createjs.Text("-- fps", "bold 30px Arial", color),
-                fps = new createjs.Container();
+            textfield = new createjs.Text("-- fps", "bold 30px Arial", color),
+            fps = new createjs.Container();
             fps.textfield = textfield;
             fps.addChild(textfield);
             fps.update = function (parent) {

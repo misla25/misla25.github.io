@@ -87,13 +87,13 @@
 
         hud.updateScore = function(value) {
           score += value;
-          txtScore.text = 'SCORE : ' + score + ' / ' + of + 350 ;
+          txtScore.text = 'SCORE : ' + score + ' / ' + of;
           // the text width may have changed, so update the position //
           render();
         };
 
         hud.updateOf = function(value) { of += value;
-          txtScore.text = 'SCORE : ' + score + ' / ' + of + 350 ;
+          txtScore.text = 'SCORE : ' + score + ' / ' + of ;
           // the text width may have changed, so update the position //
           render();
         };

@@ -58,7 +58,7 @@
     return {
       makeProjectile() {
         const projectile = _.extend(
-          draw.circle(5, "#ff0000"),
+       draw.circle(5, "#FF69B4"),
           phyz.makeBody("projectile")
         );
 
@@ -80,12 +80,12 @@
       makeShip(color) {
         console.log(createjs);
         // TODO
-        // draw.bitmap()
+        draw.bitmap();
         const ship = draw.bitmap("https://pbs.twimg.com/media/GNk4CA4WIAEhKjc?format=png&name=small");
         const radius = 25;
-        // ship = draw.rect(radius, radius, color, null, null, -(radius + radius / 10), -(radius / 2));
+       //ship = draw.rect(radius, radius, color, null, null, -(radius + radius / 10), -(radius / 2));
 
-        // continue to draw on the ship Shape to create our design //
+        // // continue to draw on the ship Shape to create our design //
         // draw.circle(radius + 3, color, null, null, null, null, ship);
         // draw.circle(radius, '#CCC', null, null, null, null, ship);
         // draw.polyStar(radius, 3, 0, 0, color, null, null, null, null, ship);
@@ -93,7 +93,7 @@
 
         // reset the radius, other non-radii drawing operations have overwritten it //
         ship.radius = radius + 3;
-        ship.color = color;
+        //ship.color = color;
 
         // rasterize the vector graphic, basically creating a bitmap //
         ship.snapToPixel = true;
@@ -154,8 +154,8 @@
       },
       makeOrb() {
         const orb = draw.randomCircleInArea(canvas, false, true, "#999", 2);
-        // console.log(`rad: ${orb.radius}`);
-        // console.log(`den: ${orb.radius / 20 * 0.5}`);
+        console.log(`rad: ${orb.radius}`);
+        console.log(`den: ${orb.radius / 20 * 0.5}`);
         Object.assign(
           orb,
           phyz.makeBody("orb", {
@@ -168,9 +168,9 @@
 
         // TODO: why is caching killing the cross on the orb?
         // rasterize the vector graphic, basically creating a bitmap //
-        // orb.snapToPixel = true;
-        // const rad = orb.radius + 2;
-        // orb.cache(-rad, -rad, rad * 2, rad * 2);
+        orb.snapToPixel = true;
+        const rad = orb.radius + 2;
+        orb.cache(-rad, -rad, rad * 2, rad * 2);
 
         return orb;
       },
